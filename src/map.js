@@ -11,15 +11,20 @@ ageofshimrod.Map = function (){
     this.ctx = undefined;
     this.stoneX = 32;
     this.stoneY = 1854;
+    this.peons = [];
 }
 
 ageofshimrod.Map.prototype ={
     init : function(){
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
+        this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
+        let peon = new ageofshimrod.Peon();
+        peon.init();
+        this.peons.push(peon);
     },
 
     render : function(){
-        this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
+        
         for (let i = 0 ; i < this.sizeX ; i++){
             for (let j = 0 ; j < this.sizeY ; j++){
                 this.ctx.drawImage(
@@ -45,5 +50,9 @@ ageofshimrod.Map.prototype ={
             192,
             32,
             32);
+
+        this.peons.forEach(function(peon){
+            peon.render();
+        })
     }
 }
