@@ -9,9 +9,8 @@ ageofshimrod.Map = function (){
     this.tileGrassY = 64;
     this.spriteset = undefined;
     this.ctx = undefined;
-    this.stoneX = 32;
-    this.stoneY = 1854;
     this.peons = [];
+    this.ressources = [];
 }
 
 ageofshimrod.Map.prototype ={
@@ -21,6 +20,11 @@ ageofshimrod.Map.prototype ={
         let peon = new ageofshimrod.Peon();
         peon.init();
         this.peons.push(peon);
+        let stone = new ageofshimrod.Ressource();
+        stone.init();
+        stone.x = 256;
+        stone.y = 256;
+        this.ressources.push(stone);
     },
 
     render : function(){
@@ -40,19 +44,13 @@ ageofshimrod.Map.prototype ={
              
             }
         }
-        this.ctx.drawImage(
-            this.spriteset,
-            this.stoneX,
-            this.stoneY,
-            32,
-            32,
-            192,
-            192,
-            32,
-            32);
 
         this.peons.forEach(function(peon){
             peon.render();
+        })
+
+        this.ressources.forEach(function(ressource){
+            ressource.render();
         })
     }
 }
