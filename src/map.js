@@ -9,6 +9,8 @@ ageofshimrod.Map = function (){
     this.tileGrassY = 64;
     this.spriteset = undefined;
     this.ctx = undefined;
+    this.stoneX = 32;
+    this.stoneY = 1854;
 }
 
 ageofshimrod.Map.prototype ={
@@ -33,5 +35,15 @@ ageofshimrod.Map.prototype ={
              
             }
         }
+        this.ctx.drawImage(
+            this.spriteset,
+            this.stoneX,
+            this.stoneY,
+            32,
+            32,
+            192,
+            192,
+            32,
+            32);
     }
 }
