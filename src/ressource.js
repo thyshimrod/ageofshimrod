@@ -9,6 +9,7 @@ ageofshimrod.Ressource = function (){
     this.tx = 32;
     this.ty = 1854;
     this.ctx = undefined;
+    this.name = "Pierre";
 }
 
 ageofshimrod.Ressource.prototype ={
@@ -16,17 +17,20 @@ ageofshimrod.Ressource.prototype ={
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
     },
-
-    render : function(){
-        this.ctx.drawImage(
+    renderPosition : function(x,y,ctx){
+        ctx.drawImage(
             this.spriteset,
             this.tx,
             this.ty,
             32,
             32,
-            this.x,
-            this.y,
+            x,
+            y,
             32,
             32);
+    },
+
+    render : function(){
+        this.renderPosition(this.x,this.y,this.ctx);
     },
 }

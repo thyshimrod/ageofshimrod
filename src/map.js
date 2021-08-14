@@ -27,6 +27,16 @@ ageofshimrod.Map.prototype ={
         this.ressources.push(stone);
     },
 
+    clickEvent : function(evt){
+        for (let i=0;i < this.ressources.length ; i++){
+            if (this.ressources[i].x < evt.pageX && evt.pageX < (this.ressources[i].x +32)
+            && this.ressources[i].y < evt.pageY && evt.pageY < (this.ressources[i].y +32)){
+                ageofshimrod.contextualOnRessource.toggle();
+            }
+        }
+
+    },
+
     render : function(){
         
         for (let i = 0 ; i < this.sizeX ; i++){

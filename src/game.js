@@ -8,10 +8,15 @@ ageofshimrod.GameEngine.prototype ={
   gameLoop: function (){
     ageofshimrod.canvas.clearCanvas();
     ageofshimrod.map.render();
+    ageofshimrod.contextualOnRessource.render();
   },
 
   clickEvent : function(evt){
-    
+    if (ageofshimrod.contextualOnRessource.status === ageofshimrod.C.UI_STATUS_SHOW){
+      ageofshimrod.contextualOnRessource.clickEvent(evt);
+    }else{
+      ageofshimrod.map.clickEvent(evt);
+    }
   },
 
   init : function(){
@@ -22,6 +27,8 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.tileset = new ageofshimrod.Tileset();
     ageofshimrod.map = new ageofshimrod.Map();
     ageofshimrod.map.init();
+    ageofshimrod.contextualOnRessource = new ageofshimrod.ContextualOnRessource();
+    ageofshimrod.contextualOnRessource.init();
   },
 }
 
