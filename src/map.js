@@ -23,7 +23,7 @@ ageofshimrod.Map.prototype ={
         this.peons.push(peon);
         let stone = new ageofshimrod.Ressource();
         stone.init();
-        stone.x = 256;
+        stone.x = 512;
         stone.y = 256;
         this.ressources.push(stone);
         let house = new ageofshimrod.Building();
@@ -38,11 +38,16 @@ ageofshimrod.Map.prototype ={
                 ageofshimrod.contextualOnRessource.toggle();
             }
         }
+        for (let i=0;i < this.buildings.length ; i++){
+            if (this.buildings[i].x < evt.pageX && evt.pageX < (this.buildings[i].x +64)
+            && this.buildings[i].y < evt.pageY && evt.pageY < (this.buildings[i].y +64)){
+                ageofshimrod.contextualOnBuilding.toggle();
+            }
+        }
 
     },
 
     render : function(){
-        
         for (let i = 0 ; i < this.sizeX ; i++){
             for (let j = 0 ; j < this.sizeY ; j++){
                 this.ctx.drawImage(

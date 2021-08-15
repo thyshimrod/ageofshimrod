@@ -9,12 +9,14 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.canvas.clearCanvas();
     ageofshimrod.map.render();
     ageofshimrod.contextualOnRessource.render();
+    ageofshimrod.contextualOnBuilding.render();
   },
 
   clickEvent : function(evt){
-    if (ageofshimrod.contextualOnRessource.status === ageofshimrod.C.UI_STATUS_SHOW){
-      ageofshimrod.contextualOnRessource.clickEvent(evt);
-    }else{
+    let clickOnMenu = ageofshimrod.contextualOnRessource.clickEvent(evt)
+    || ageofshimrod.contextualOnBuilding.clickEvent(evt);
+
+    if (clickOnMenu === ageofshimrod.C.CLICK_OUTSIDE_WINDOW){
       ageofshimrod.map.clickEvent(evt);
     }
   },
@@ -29,6 +31,8 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.map.init();
     ageofshimrod.contextualOnRessource = new ageofshimrod.ContextualOnRessource();
     ageofshimrod.contextualOnRessource.init();
+    ageofshimrod.contextualOnBuilding = new ageofshimrod.ContextualOnBuilding();
+    ageofshimrod.contextualOnBuilding.init();
   },
 }
 
@@ -36,3 +40,4 @@ ageofshimrod.gameEngine = new ageofshimrod.GameEngine();
 ageofshimrod.gameEngine.init();
 
 setInterval(ageofshimrod.gameEngine.gameLoop,1000/60)
+

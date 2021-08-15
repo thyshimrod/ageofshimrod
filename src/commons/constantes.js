@@ -9,4 +9,7 @@ ageofshimrod.C = Object.freeze({
 
   UI_STATUS_SHOW : 0,
   UI_STATUS_HIDDEN : 1,
+
+  CLICK_ON_WINDOW : true,
+  CLICK_OUTSIDE_WINDOW : false,
 });

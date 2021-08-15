@@ -21,7 +21,9 @@ ageofshimrod.ContextualOnRessource.prototype ={
     clickEvent : function(evt){
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){
             this.toggle();
+            return ageofshimrod.C.CLICK_ON_WINDOW;
         }
+        return ageofshimrod.C.CLICK_OUTSIDE_WINDOW;
     },
 
     toggle : function(){
