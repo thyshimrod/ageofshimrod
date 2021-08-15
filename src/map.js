@@ -11,6 +11,7 @@ ageofshimrod.Map = function (){
     this.ctx = undefined;
     this.peons = [];
     this.ressources = [];
+    this.buildings = [];
 }
 
 ageofshimrod.Map.prototype ={
@@ -25,6 +26,9 @@ ageofshimrod.Map.prototype ={
         stone.x = 256;
         stone.y = 256;
         this.ressources.push(stone);
+        let house = new ageofshimrod.Building();
+        house.init();
+        this.buildings.push(house);
     },
 
     clickEvent : function(evt){
@@ -61,6 +65,10 @@ ageofshimrod.Map.prototype ={
 
         this.ressources.forEach(function(ressource){
             ressource.render();
+        })
+
+        this.buildings.forEach(function(building){
+            building.render();
         })
     }
 }
