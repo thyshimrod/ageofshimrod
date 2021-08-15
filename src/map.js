@@ -22,7 +22,7 @@ ageofshimrod.Map.prototype ={
         peon.init();
         this.peons.push(peon);
         let stone = new ageofshimrod.Ressource();
-        stone.init();
+        stone.init(ageofshimrod.C.RESSOURCE_PIERRE);
         stone.x = 512;
         stone.y = 256;
         this.ressources.push(stone);

@@ -6,14 +6,20 @@ ageofshimrod.Ressource = function (){
     this.y = 0;
     this.tileset = "./assets/tileset/tileset1.png";
     this.spriteset = undefined;
-    this.tx = 32;
-    this.ty = 1854;
+    this.tx = 0;
+    this.ty = 0;
     this.ctx = undefined;
-    this.name = "Pierre";
+    this.name = "";
 }
 
 ageofshimrod.Ressource.prototype ={
-    init : function(){
+    init : function(templateId){
+        var src = ageofshimrod.Ressources[templateId];
+        this.name = src.name;
+        this.tx = src.sprite.x;
+        this.ty = src.sprite.y;
+        this.tileset = src.tileset;
+
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
     },

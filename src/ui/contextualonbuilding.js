@@ -13,6 +13,7 @@ ageofshimrod.ContextualOnBuilding = function (){
 
 ageofshimrod.ContextualOnBuilding.prototype ={
     init : function(){
+        //TODO ajouter le passage de parametre du batiment pointé
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
         this.building = new ageofshimrod.Building();
         this.building.init();

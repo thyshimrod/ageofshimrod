@@ -12,4 +12,7 @@ ageofshimrod.C = Object.freeze({
 
   CLICK_ON_WINDOW : true,
   CLICK_OUTSIDE_WINDOW : false,
+
+  RESSOURCE_PIERRE : 1,
+  
 });
