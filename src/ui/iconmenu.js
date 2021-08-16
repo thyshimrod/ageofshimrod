@@ -27,6 +27,8 @@ ageofshimrod.IconMenu.prototype ={
             && evt.pageY > this.icons[i].y && evt.pageY < (this.icons[i].y + 32)){
                 if(this.icons[i].name === 'ressource'){
                     ageofshimrod.menuRessource.toggle();
+                }else if(this.icons[i].name === 'peon'){
+                    ageofshimrod.menuPeon.toggle();
                 }
                 return ageofshimrod.C.CLICK_ON_WINDOW;
             }

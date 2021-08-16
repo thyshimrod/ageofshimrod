@@ -14,7 +14,6 @@ ageofshimrod.Peon = function (){
 
 ageofshimrod.Peon.prototype ={
     init : function(){
-        this.spriteset = ageofshimrod.tileset.get(this.tileset);
         this.ctx = ageofshimrod.canvas.canvasCreature.getContext("2d");
         if (this.findAHouse()) console.log("Maison trouvee");
     },
@@ -33,16 +32,21 @@ ageofshimrod.Peon.prototype ={
         return false;
     },
 
-    render : function(){
-        this.ctx.drawImage(
+    renderPosition : function(x,y,ctx){
+        this.spriteset = ageofshimrod.tileset.get(this.tileset);
+        ctx.drawImage(
             this.spriteset,
             0,
             0,
             32,
             32,
-            this.x,
-            this.y,
+            x,
+            y,
             32,
             32);
-    }
+    },
+
+    render : function(){
+        this.renderPosition(this.x,this.y,this.ctx);
+    },
 }

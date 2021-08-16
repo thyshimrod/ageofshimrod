@@ -12,11 +12,13 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.contextualOnBuilding.render();
     ageofshimrod.iconMenu.render();
     ageofshimrod.menuRessource.render();
+    ageofshimrod.menuPeon.render();
   },
 
   clickEvent : function(evt){
     let clickOnMenu = ageofshimrod.iconMenu.clickEvent(evt)
     || ageofshimrod.menuRessource.clickEvent(evt)
+    || ageofshimrod.menuPeon.clickEvent(evt)
     || ageofshimrod.contextualOnDecor.clickEvent(evt)
     || ageofshimrod.contextualOnBuilding.clickEvent(evt);
 
@@ -43,6 +45,8 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.player.init();
     ageofshimrod.menuRessource = new ageofshimrod.MenuRessource();
     ageofshimrod.menuRessource.init();
+    ageofshimrod.menuPeon = new ageofshimrod.MenuPeon();
+    ageofshimrod.menuPeon.init();
   },
 }
 

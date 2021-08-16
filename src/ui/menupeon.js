@@ -1,7 +1,7 @@
 'use strict';
 var ageofshimrod = ageofshimrod || {};
 
-ageofshimrod.MenuRessource = function (){
+ageofshimrod.MenuPeon = function (){
     this.x = 100;
     this.y = 100;
     this.width = 200;
@@ -10,7 +10,7 @@ ageofshimrod.MenuRessource = function (){
     this.status = ageofshimrod.C.UI_STATUS_HIDDEN;
 }
 
-ageofshimrod.MenuRessource.prototype ={
+ageofshimrod.MenuPeon.prototype ={
     //TODO Positionner le menu en fonction de la position de la decor
     init : function(){
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
@@ -40,23 +40,17 @@ ageofshimrod.MenuRessource.prototype ={
             this.ctx.stroke();
             this.ctx.font = "1Opx Arial";
             this.ctx.fillStyle = ageofshimrod.C.UI_FONT_COLOR;
-            let text = "Ressources";
+            let text = "Peons";
             this.ctx.fillText(text ,
                 this.x + 40, 
                 this.y + 10);
-            
-            let y = this.y +25;
-            for (let i = 0 ; i < ageofshimrod.player.ressources.length;i++){
-                let res = ageofshimrod.player.ressources[i];
-                let resToDraw = new ageofshimrod.Ressource();
-                resToDraw.init(res.id);
-                resToDraw.renderPosition(this.x + 5, y , this.ctx);
-                let text = res.quantity;
-                this.ctx.fillText(text ,
-                    this.x + 75, 
-                    y + 20);
-                y += 50;
-            } 
+
+            let peon = new ageofshimrod.Peon();
+            peon.renderPosition(this.x + 5, this.y +25,this.ctx);
+            text = ageofshimrod.map.peons.length;
+            this.ctx.fillText(text ,
+                this.x + 50, 
+                this.y + 40);
         }
     },
 }
