@@ -45,7 +45,7 @@ ageofshimrod.ContextualOnDecor.prototype ={
             this.ctx.fillText(text ,
                 this.x + 40, 
                 this.y + 10);
-            this.decor.renderPosition(this.x + 10, this.y + 30, this.ctx);
+            this.decor.renderPosition(this.x + 5, this.y + 30, this.ctx);
 
             text = this.decor.name;
             this.ctx.fillText(text ,
