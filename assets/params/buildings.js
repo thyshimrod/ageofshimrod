@@ -2,8 +2,8 @@
 
 var ageofshimrod = ageofshimrod || {};
 
-ageofshimrod.Buildings = {
-    1 : {
+ageofshimrod.Buildings = [
+    {
         "name"    : "Maison",
         "size":{"x" : 88, "y" : 106},
         "tileset" : "assets/tileset/pngwing.com.png",
@@ -16,7 +16,7 @@ ageofshimrod.Buildings = {
             }
         ]
     },
-    2 : {
+    {
         "name"    : "Bucheron",
         "size":{"x" : 92, "y" : 106},
         "tileset" : "assets/tileset/pngwing.com.png",
@@ -32,5 +32,5 @@ ageofshimrod.Buildings = {
                 "quantity" : 100
             }
         ]
-    },
-}
+    }
+]
