@@ -10,6 +10,7 @@ ageofshimrod.Peon = function (){
     this.stoneX = 32;
     this.stoneY = 1854;
     this.house = undefined;
+    this.affectation = undefined;
 }
 
 ageofshimrod.Peon.prototype ={

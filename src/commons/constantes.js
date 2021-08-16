@@ -6,6 +6,7 @@ ageofshimrod.C = Object.freeze({
   UI_BORDER_COLOR : "#191970",
   UI_RECT_COLOR : "#E6E6FA",
   UI_FONT_COLOR : "#191970",
+  UI_BORDER_RED : "#f81a2d",
 
   UI_STATUS_SHOW : 0,
   UI_STATUS_HIDDEN : 1,
@@ -21,5 +22,8 @@ ageofshimrod.C = Object.freeze({
 
   BUILDING_HOUSE : 0,
   BUILDING_LUMBER : 1,
+
+  BUTTON_STATUS_KO : 0,
+  BUTTON_STATUS_OK : 1,
 
 });
