@@ -32,6 +32,17 @@ ageofshimrod.ContextualOnBuilding.prototype ={
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
     },
 
+    getPeonOnThatBuilding : function(){
+        let result = [];
+        var _this = this;
+        ageofshimrod.map.peons.forEach(function(peon){
+            if (peon.affectation === _this.building){
+                result.push(peon);
+            }
+        })
+        return result;
+    },
+
     clickEvent : function(evt){
         //TODO Evaluate if click on window or outside
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){
@@ -39,12 +50,17 @@ ageofshimrod.ContextualOnBuilding.prototype ={
             for (let i = 0;i < this.buttons.length;i++){
                 if (evt.pageX > (this.buttons[i].x - this.buttons[i].size/2) && evt.pageX  < (this.buttons[i].x + this.buttons[i].size)
                 &&  evt.pageY > (this.buttons[i].y - this.buttons[i].size/2) && evt.pageY < (this.buttons[i].y + this.buttons[i].size)){
-                    console.log(this.buttons[i].name)
                     if (this.buttons[i].status === ageofshimrod.C.BUTTON_STATUS_OK){
                         if (this.buttons[i].name === "+"){
                             let peonsFree = ageofshimrod.map.findPeonFree();
                             peonsFree[0].affectation = this.building;
                             this.building.peons.push(peonsFree[0]);
+                        }else{
+                            let peonsInBuilding = this.getPeonOnThatBuilding();
+                            if (peonsInBuilding.length > 0){
+                                this.building.removePeon(peonsInBuilding[0]);
+                                peonsInBuilding[0].affectation = undefined;
+                            }
                         }
                     }
                     btnPressed = true;
@@ -80,6 +96,8 @@ ageofshimrod.ContextualOnBuilding.prototype ={
         })
     },
 
+
+
     render : function(){
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){
             this.ctx.beginPath();
@@ -106,6 +124,7 @@ ageofshimrod.ContextualOnBuilding.prototype ={
             this.ctx.fillText(text ,
                 this.x + 10, 
                 this.y + 130);
+
             if (this.building.name !== "Maison"){
                 this.drawButtons();
             }
