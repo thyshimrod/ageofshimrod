@@ -12,12 +12,9 @@ ageofshimrod.ContextualOnRessource = function (){
 }
 
 ageofshimrod.ContextualOnRessource.prototype ={
-    //TODO ajouter le passage de parametre de la ressource pointée
     //TODO Positionner le menu en fonction de la position de la ressource
     init : function(){
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
-        this.ressource = new ageofshimrod.Ressource();
-        this.ressource.init(ageofshimrod.C.RESSOURCE_PIERRE);
     },
 
     clickEvent : function(evt){

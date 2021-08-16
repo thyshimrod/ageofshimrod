@@ -18,9 +18,7 @@ ageofshimrod.Map.prototype ={
     init : function(){
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
-        let peon = new ageofshimrod.Peon();
-        peon.init();
-        this.peons.push(peon);
+        
         let stone = new ageofshimrod.Ressource();
         stone.init(ageofshimrod.C.RESSOURCE_PIERRE);
         stone.x = 512;
@@ -29,18 +27,23 @@ ageofshimrod.Map.prototype ={
         let house = new ageofshimrod.Building();
         house.init();
         this.buildings.push(house);
+        let peon = new ageofshimrod.Peon();
+        peon.init();
+        this.peons.push(peon);
     },
 
     clickEvent : function(evt){
         for (let i=0;i < this.ressources.length ; i++){
             if (this.ressources[i].x < evt.pageX && evt.pageX < (this.ressources[i].x +32)
             && this.ressources[i].y < evt.pageY && evt.pageY < (this.ressources[i].y +32)){
+                ageofshimrod.contextualOnRessource.ressource = this.ressources[i];
                 ageofshimrod.contextualOnRessource.toggle();
             }
         }
         for (let i=0;i < this.buildings.length ; i++){
             if (this.buildings[i].x < evt.pageX && evt.pageX < (this.buildings[i].x +64)
             && this.buildings[i].y < evt.pageY && evt.pageY < (this.buildings[i].y +64)){
+                ageofshimrod.contextualOnBuilding.building = this.buildings[i];
                 ageofshimrod.contextualOnBuilding.toggle();
             }
         }

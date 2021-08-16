@@ -13,10 +13,7 @@ ageofshimrod.ContextualOnBuilding = function (){
 
 ageofshimrod.ContextualOnBuilding.prototype ={
     init : function(){
-        //TODO ajouter le passage de parametre du batiment pointé
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
-        this.building = new ageofshimrod.Building();
-        this.building.init();
     },
 
     clickEvent : function(evt){
@@ -54,7 +51,7 @@ ageofshimrod.ContextualOnBuilding.prototype ={
                 this.x + 100, 
                 this.y + 50);
 
-            text = "capacite : 0 / " + this.building.capacity;
+            text = "capacite : " + this.building.peons.length + " / " + this.building.capacity;
             this.ctx.fillText(text ,
                 this.x + 10, 
                 this.y + 130);

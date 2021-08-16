@@ -13,6 +13,7 @@ ageofshimrod.Building = function (){
     this.ctx = undefined;
     this.name = "Maison";
     this.capacity = 2;
+    this.peons = [];
 
 }
 
