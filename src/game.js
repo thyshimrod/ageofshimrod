@@ -10,10 +10,12 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.map.render();
     ageofshimrod.contextualOnRessource.render();
     ageofshimrod.contextualOnBuilding.render();
+    ageofshimrod.iconMenu.render();
   },
 
   clickEvent : function(evt){
-    let clickOnMenu = ageofshimrod.contextualOnRessource.clickEvent(evt)
+    let clickOnMenu = ageofshimrod.iconMenu.clickEvent(evt)
+    || ageofshimrod.contextualOnRessource.clickEvent(evt)
     || ageofshimrod.contextualOnBuilding.clickEvent(evt);
 
     if (clickOnMenu === ageofshimrod.C.CLICK_OUTSIDE_WINDOW){
@@ -33,6 +35,8 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.contextualOnRessource.init();
     ageofshimrod.contextualOnBuilding = new ageofshimrod.ContextualOnBuilding();
     ageofshimrod.contextualOnBuilding.init();
+    ageofshimrod.iconMenu = new ageofshimrod.IconMenu();
+    ageofshimrod.iconMenu.init();
   },
 }
 
