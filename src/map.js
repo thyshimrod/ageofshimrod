@@ -63,11 +63,11 @@ ageofshimrod.Map.prototype ={
     },
 
     findPeonFree : function(){
-        let result = 0;
+        let result = [];
         var _this = this;
         this.peons.forEach(function(peon){
-            if (typeof peon.affectation !== undefined){
-                result += 1;
+            if (typeof peon.affectation === "undefined"){
+                result.push(peon);
             }
         })
         return result;

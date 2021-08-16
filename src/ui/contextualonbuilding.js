@@ -18,7 +18,7 @@ ageofshimrod.ContextualOnBuilding = function (){
             "status" : ageofshimrod.C.BUTTON_STATUS_OK
         },
         {
-            "x" : this.x + 120,
+            "x" : this.x + 130,
             "y" : this.y + 130,
             "size" : 20,
             "name" : "-",
@@ -35,7 +35,22 @@ ageofshimrod.ContextualOnBuilding.prototype ={
     clickEvent : function(evt){
         //TODO Evaluate if click on window or outside
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){
-            this.toggle();
+            let btnPressed = false;
+            for (let i = 0;i < this.buttons.length;i++){
+                if (evt.pageX > (this.buttons[i].x - this.buttons[i].size/2) && evt.pageX  < (this.buttons[i].x + this.buttons[i].size)
+                &&  evt.pageY > (this.buttons[i].y - this.buttons[i].size/2) && evt.pageY < (this.buttons[i].y + this.buttons[i].size)){
+                    console.log(this.buttons[i].name)
+                    if (this.buttons[i].status === ageofshimrod.C.BUTTON_STATUS_OK){
+                        if (this.buttons[i].name === "+"){
+                            let peonsFree = ageofshimrod.map.findPeonFree();
+                            peonsFree[0].affectation = this.building;
+                            this.building.peons.push(peonsFree[0]);
+                        }
+                    }
+                    btnPressed = true;
+                }
+            }
+            if (!btnPressed) this.toggle();
             return ageofshimrod.C.CLICK_ON_WINDOW;
         }
         return ageofshimrod.C.CLICK_OUTSIDE_WINDOW;
@@ -54,8 +69,8 @@ ageofshimrod.ContextualOnBuilding.prototype ={
                 btn.y );
             _this.ctx.beginPath();
             if (btn.name == "+"){
-                let nbPeon = ageofshimrod.map.findPeonFree();
-                btn.status = nbPeon > 0 ? ageofshimrod.C.BUTTON_STATUS_OK : ageofshimrod.C.BUTTON_STATUS_KO;
+                let peonsFree = ageofshimrod.map.findPeonFree();
+                btn.status = peonsFree.length > 0 ? ageofshimrod.C.BUTTON_STATUS_OK : ageofshimrod.C.BUTTON_STATUS_KO;
             }else{
                 btn.status = _this.building.peons.length > 0 ? ageofshimrod.C.BUTTON_STATUS_OK : ageofshimrod.C.BUTTON_STATUS_KO;
             }
