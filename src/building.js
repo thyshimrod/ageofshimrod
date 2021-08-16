@@ -14,6 +14,7 @@ ageofshimrod.Building = function (){
     this.name = "";
     this.capacity = 0;
     this.peons = [];
+    this.materiauxNeeded = [];
 
 }
 
@@ -29,6 +30,13 @@ ageofshimrod.Building.prototype ={
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
         this.capacity = src.capacity;
+        for (let i=0;i<src.materiaux.length;i++){
+            let mat = {
+                "id" : src.materiaux[i].id,
+                "quantity" : src.materiaux[i].quantity
+            }
+            this.materiauxNeeded.push(mat);
+        }
     },
 
 
