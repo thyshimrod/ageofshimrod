@@ -128,7 +128,15 @@ ageofshimrod.ContextualOnBuilding.prototype ={
             if (this.building.name !== "Maison"){
                 this.drawButtons();
             }
-            
+            if (typeof this.building.ressource !== "undefined"){
+                let ressource = new ageofshimrod.Ressource();
+                ressource.init(this.building.ressource);
+                text = "Ressource : " ;
+                this.ctx.fillText(text ,
+                    this.x + 10, 
+                    this.y + 160);
+                ressource.renderPosition(this.x + 90, this.y + 140 , this.ctx);
+            }
         }
     },
 }

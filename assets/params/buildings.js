@@ -13,7 +13,7 @@ ageofshimrod.Buildings = [
             {
                 "id" : 2,
                 "quantity" : 100
-            }
+            },
         ]
     },
     {
@@ -31,6 +31,7 @@ ageofshimrod.Buildings = [
                 "id" : 1,
                 "quantity" : 100
             }
-        ]
+        ],
+        "ressource" : ageofshimrod.C.RESSOURCE_BOIS
     }
 ]

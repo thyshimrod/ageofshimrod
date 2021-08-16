@@ -37,6 +37,7 @@ ageofshimrod.Building.prototype ={
             }
             this.materiauxNeeded.push(mat);
         }
+        this.ressource = src.ressource;
     },
 
     removePeon : function(peon){
