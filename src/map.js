@@ -30,7 +30,14 @@ ageofshimrod.Map.prototype ={
         arbre.y = 512;
         this.decors.push(arbre);
         let house = new ageofshimrod.Building();
-        house.init();
+        house.init(ageofshimrod.C.BUILDING_HOUSE);
+        house.x = 100;
+        house.Y = 100;
+        this.buildings.push(house);
+        house = new ageofshimrod.Building();
+        house.init(ageofshimrod.C.BUILDING_LUMBER);
+        house.x = 200;
+        house.y = 200;
         this.buildings.push(house);
         let peon = new ageofshimrod.Peon();
         peon.init();

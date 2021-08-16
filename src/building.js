@@ -2,25 +2,33 @@
 var ageofshimrod = ageofshimrod || {};
 
 ageofshimrod.Building = function (){
-    this.sizeX = 88;
-    this.sizeY = 106;
-    this.tileset = "./assets/tileset/pngwing.com.png";
-    this.tx = 32;
-    this.ty = 440;
+    this.sizeX = 0;
+    this.sizeY = 0;
+    this.tileset = "";
+    this.tx = 0;
+    this.ty = 0;
     this.x = 100;
     this.y = 100;
     this.spriteset = undefined;
     this.ctx = undefined;
-    this.name = "Maison";
-    this.capacity = 2;
+    this.name = "";
+    this.capacity = 0;
     this.peons = [];
 
 }
 
 ageofshimrod.Building.prototype ={
-    init : function(){
+    init : function(templateId){
+        let src = ageofshimrod.Buildings[templateId];
+        this.name = src.name;
+        this.sizeX = src.size.x;
+        this.sizeY = src.size.y;
+        this.tx = src.sprite.x;
+        this.ty = src.sprite.y;
+        this.tileset = src.tileset;
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
+        this.capacity = src.capacity;
     },
 
 
