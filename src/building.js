@@ -41,7 +41,6 @@ ageofshimrod.Building.prototype ={
 
     removePeon : function(peon){
         const index = this.peons.indexOf(peon);
-        console.log(index);
         if (index !== -1) {
             this.peons.splice(index, 1);
         }

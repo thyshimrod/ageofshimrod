@@ -7,8 +7,6 @@ ageofshimrod.Peon = function (){
     this.tileset = "./assets/sprite/adam.png";
     this.spriteset = undefined;
     this.ctx = undefined;
-    this.stoneX = 32;
-    this.stoneY = 1854;
     this.house = undefined;
     this.affectation = undefined;
 }
@@ -31,6 +29,17 @@ ageofshimrod.Peon.prototype ={
             }
         }
         return false;
+    },
+
+    changeAffectation : function(building){
+        this.affectation = building;
+        let toFind = typeof building === "undefined" ? "None" : building.name;
+        var _this = this;
+        ageofshimrod.Sprite4Specialist.forEach(function(sprite){
+            if (sprite.name === toFind){
+                _this.tileset = sprite.sprite;
+            }
+        })
     },
 
     renderPosition : function(x,y,ctx){

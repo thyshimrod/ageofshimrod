@@ -41,6 +41,11 @@ ageofshimrod.Map.prototype ={
         this.buildings.push(house);
         let peon = new ageofshimrod.Peon();
         peon.init();
+        peon.x =300;
+        this.peons.push(peon);
+        peon = new ageofshimrod.Peon();
+        peon.init();
+        peon.x =350;
         this.peons.push(peon);
     },
 

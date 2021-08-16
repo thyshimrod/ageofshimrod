@@ -53,13 +53,13 @@ ageofshimrod.ContextualOnBuilding.prototype ={
                     if (this.buttons[i].status === ageofshimrod.C.BUTTON_STATUS_OK){
                         if (this.buttons[i].name === "+"){
                             let peonsFree = ageofshimrod.map.findPeonFree();
-                            peonsFree[0].affectation = this.building;
+                            peonsFree[0].changeAffectation(this.building);
                             this.building.peons.push(peonsFree[0]);
                         }else{
                             let peonsInBuilding = this.getPeonOnThatBuilding();
                             if (peonsInBuilding.length > 0){
                                 this.building.removePeon(peonsInBuilding[0]);
-                                peonsInBuilding[0].affectation = undefined;
+                                peonsInBuilding[0].changeAffectation(undefined);
                             }
                         }
                     }
