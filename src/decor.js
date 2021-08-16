@@ -2,7 +2,7 @@
 var ageofshimrod = ageofshimrod || {};
 
 ageofshimrod.Decor = function (){
-    this.ressources = [];
+    this.ressources = {};
     this.x = 0;
     this.y = 0;
     this.tileset = "";
@@ -24,6 +24,10 @@ ageofshimrod.Decor.prototype ={
         this.sizeY = src.size.y;
         this.sizeX = src.size.x;
         this.tileset = src.tileset;
+        this.ressource = {
+            "id" : src.ressources.id,
+            "quantity" : src.ressources.quantity
+        };
 
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");

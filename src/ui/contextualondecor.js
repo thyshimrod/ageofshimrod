@@ -51,6 +51,19 @@ ageofshimrod.ContextualOnDecor.prototype ={
             this.ctx.fillText(text ,
                 this.x + 50, 
                 this.y + 50);
+            
+            text = "Ressources";
+            this.ctx.fillText(text ,
+                this.x + 75, 
+                this.y + 80);
+            let res = new ageofshimrod.Ressource();
+            res.init(this.decor.ressource.id);
+            res.renderPosition(this.x + 5, this.y + 100,this.ctx);
+            text = this.decor.ressource.quantity;
+            this.ctx.fillText(text ,
+                this.x + 50, 
+                this.y + 120);
+            
         }
     },
 }
