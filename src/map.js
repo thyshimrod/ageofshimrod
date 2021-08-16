@@ -10,7 +10,7 @@ ageofshimrod.Map = function (){
     this.spriteset = undefined;
     this.ctx = undefined;
     this.peons = [];
-    this.ressources = [];
+    this.decors = [];
     this.buildings = [];
 }
 
@@ -19,11 +19,16 @@ ageofshimrod.Map.prototype ={
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
         
-        let stone = new ageofshimrod.Ressource();
-        stone.init(ageofshimrod.C.RESSOURCE_PIERRE);
+        let stone = new ageofshimrod.Decor();
+        stone.init(ageofshimrod.C.DECOR_PIERRE);
         stone.x = 512;
         stone.y = 256;
-        this.ressources.push(stone);
+        this.decors.push(stone);
+        let arbre = new ageofshimrod.Decor();
+        arbre.init(ageofshimrod.C.DECOR_ARBRE)
+        arbre.x = 768;
+        arbre.y = 512;
+        this.decors.push(arbre);
         let house = new ageofshimrod.Building();
         house.init();
         this.buildings.push(house);
@@ -33,11 +38,11 @@ ageofshimrod.Map.prototype ={
     },
 
     clickEvent : function(evt){
-        for (let i=0;i < this.ressources.length ; i++){
-            if (this.ressources[i].x < evt.pageX && evt.pageX < (this.ressources[i].x +32)
-            && this.ressources[i].y < evt.pageY && evt.pageY < (this.ressources[i].y +32)){
-                ageofshimrod.contextualOnRessource.ressource = this.ressources[i];
-                ageofshimrod.contextualOnRessource.toggle();
+        for (let i=0;i < this.decors.length ; i++){
+            if (this.decors[i].x < evt.pageX && evt.pageX < (this.decors[i].x +32)
+            && this.decors[i].y < evt.pageY && evt.pageY < (this.decors[i].y +32)){
+                ageofshimrod.contextualOnDecor.decor = this.decors[i];
+                ageofshimrod.contextualOnDecor.toggle();
             }
         }
         for (let i=0;i < this.buildings.length ; i++){
@@ -71,8 +76,8 @@ ageofshimrod.Map.prototype ={
             peon.render();
         })
 
-        this.ressources.forEach(function(ressource){
-            ressource.render();
+        this.decors.forEach(function(decor){
+            decor.render();
         })
 
         this.buildings.forEach(function(building){

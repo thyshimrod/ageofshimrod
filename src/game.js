@@ -8,14 +8,14 @@ ageofshimrod.GameEngine.prototype ={
   gameLoop: function (){
     ageofshimrod.canvas.clearCanvas();
     ageofshimrod.map.render();
-    ageofshimrod.contextualOnRessource.render();
+    ageofshimrod.contextualOnDecor.render();
     ageofshimrod.contextualOnBuilding.render();
     ageofshimrod.iconMenu.render();
   },
 
   clickEvent : function(evt){
     let clickOnMenu = ageofshimrod.iconMenu.clickEvent(evt)
-    || ageofshimrod.contextualOnRessource.clickEvent(evt)
+    || ageofshimrod.contextualOnDecor.clickEvent(evt)
     || ageofshimrod.contextualOnBuilding.clickEvent(evt);
 
     if (clickOnMenu === ageofshimrod.C.CLICK_OUTSIDE_WINDOW){
@@ -31,8 +31,8 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.tileset = new ageofshimrod.Tileset();
     ageofshimrod.map = new ageofshimrod.Map();
     ageofshimrod.map.init();
-    ageofshimrod.contextualOnRessource = new ageofshimrod.ContextualOnRessource();
-    ageofshimrod.contextualOnRessource.init();
+    ageofshimrod.contextualOnDecor = new ageofshimrod.ContextualOnDecor();
+    ageofshimrod.contextualOnDecor.init();
     ageofshimrod.contextualOnBuilding = new ageofshimrod.ContextualOnBuilding();
     ageofshimrod.contextualOnBuilding.init();
     ageofshimrod.iconMenu = new ageofshimrod.IconMenu();

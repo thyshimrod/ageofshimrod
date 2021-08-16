@@ -1,18 +1,18 @@
 'use strict';
 var ageofshimrod = ageofshimrod || {};
 
-ageofshimrod.ContextualOnRessource = function (){
+ageofshimrod.ContextualOnDecor = function (){
     this.x = 100;
     this.y = 100;
     this.width = 200;
     this.height = 200;
     this.ctx = undefined;
-    this.ressource = null;
+    this.decor = null;
     this.status = ageofshimrod.C.UI_STATUS_HIDDEN;
 }
 
-ageofshimrod.ContextualOnRessource.prototype ={
-    //TODO Positionner le menu en fonction de la position de la ressource
+ageofshimrod.ContextualOnDecor.prototype ={
+    //TODO Positionner le menu en fonction de la position de la decor
     init : function(){
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
     },
@@ -41,13 +41,13 @@ ageofshimrod.ContextualOnRessource.prototype ={
             this.ctx.stroke();
             this.ctx.font = "1Opx Arial";
             this.ctx.fillStyle = ageofshimrod.C.UI_FONT_COLOR;
-            let text = "Ressource";
+            let text = "Decor";
             this.ctx.fillText(text ,
                 this.x + 40, 
                 this.y + 10);
-            this.ressource.renderPosition(this.x + 10, this.y + 30, this.ctx);
+            this.decor.renderPosition(this.x + 10, this.y + 30, this.ctx);
 
-            text = this.ressource.name;
+            text = this.decor.name;
             this.ctx.fillText(text ,
                 this.x + 50, 
                 this.y + 50);
