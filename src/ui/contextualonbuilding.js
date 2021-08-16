@@ -106,8 +106,10 @@ ageofshimrod.ContextualOnBuilding.prototype ={
             this.ctx.fillText(text ,
                 this.x + 10, 
                 this.y + 130);
-
-            this.drawButtons();
+            if (this.building.name !== "Maison"){
+                this.drawButtons();
+            }
+            
         }
     },
 }
