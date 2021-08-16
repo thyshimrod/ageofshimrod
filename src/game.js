@@ -37,6 +37,8 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.contextualOnBuilding.init();
     ageofshimrod.iconMenu = new ageofshimrod.IconMenu();
     ageofshimrod.iconMenu.init();
+    ageofshimrod.player = new ageofshimrod.Player();
+    ageofshimrod.player.init();
   },
 }
 
