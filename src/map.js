@@ -56,9 +56,13 @@ ageofshimrod.Map.prototype ={
         this.newBuilding = new ageofshimrod.Building();
         this.newBuilding.init(idBuilding);
         var _this = this;
-        //this.newBuilding.materiaux.forEach(function(mat){
-
-        //})
+        this.newBuilding.materiauxNeeded.forEach(function(mat){
+            for (let i=0;i< ageofshimrod.player.ressources.length;i++){
+                if (mat.id === ageofshimrod.player.ressources[i].id){
+                    ageofshimrod.player.ressources[i].quantity -= mat.quantity;
+                }
+            }
+        })
     },
 
     gameLoop : function(){
