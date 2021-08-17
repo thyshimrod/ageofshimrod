@@ -87,17 +87,18 @@ ageofshimrod.Map.prototype ={
     render : function(){
         for (let i = 0 ; i < this.sizeX ; i++){
             for (let j = 0 ; j < this.sizeY ; j++){
-                this.ctx.drawImage(
-                    this.spriteset,
-                    this.tileGrassX,
-                    this.tileGrassY,
-                    32,
-                    32,
-                    i*32,
-                    j*32,
-                    32,
-                    32);
-             
+                if (i*32 < window.innerWidth && j*32 < window.innerHeight){
+                    this.ctx.drawImage(
+                        this.spriteset,
+                        this.tileGrassX,
+                        this.tileGrassY,
+                        32,
+                        32,
+                        i*32,
+                        j*32,
+                        32,
+                        32);
+                }
             }
         }
 
