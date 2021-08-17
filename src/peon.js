@@ -158,6 +158,8 @@ ageofshimrod.Peon.prototype ={
                 _this.tileset = sprite.sprite;
             }
         })
+        this.status = ageofshimrod.C.PEON_STATUS_GOTO_STOCK;
+        this.decor = undefined;
     },
 
     renderPosition : function(x,y,ctx){
