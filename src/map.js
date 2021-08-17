@@ -49,6 +49,12 @@ ageofshimrod.Map.prototype ={
         this.peons.push(peon);
     },
 
+    gameLoop : function(){
+        this.peons.forEach(function(peon){
+            peon.gameLoop();
+        })
+    },
+
     clickEvent : function(evt){
         for (let i=0;i < this.decors.length ; i++){
             if (this.decors[i].x < evt.pageX && evt.pageX < (this.decors[i].x + this.decors[i].sizeX)

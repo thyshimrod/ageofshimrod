@@ -14,6 +14,7 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.menuRessource.render();
     ageofshimrod.menuPeon.render();
     ageofshimrod.menuBuilding.render();
+    ageofshimrod.map.gameLoop();
   },
 
   clickEvent : function(evt){
