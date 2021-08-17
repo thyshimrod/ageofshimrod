@@ -11,7 +11,7 @@ ageofshimrod.Buildings = [
         "capacity" : 2,
         "materiaux" : [
             {
-                "id" : 2,
+                "id" : ageofshimrod.C.RESSOURCE_BOIS,
                 "quantity" : 100
             },
         ]
@@ -24,11 +24,11 @@ ageofshimrod.Buildings = [
         "capacity" : 2,
         "materiaux" : [
             {
-                "id" : 2,
+                "id" : ageofshimrod.C.RESSOURCE_BOIS,
                 "quantity" : 100
             },
             {
-                "id" : 1,
+                "id" : ageofshimrod.C.RESSOURCE_PIERRE,
                 "quantity" : 100
             }
         ],
@@ -42,11 +42,11 @@ ageofshimrod.Buildings = [
         "capacity" : 2,
         "materiaux" : [
             {
-                "id" : 2,
+                "id" : ageofshimrod.C.RESSOURCE_BOIS,
                 "quantity" : 100
             },
             {
-                "id" : 1,
+                "id" : ageofshimrod.C.RESSOURCE_PIERRE,
                 "quantity" : 100
             }
         ],
