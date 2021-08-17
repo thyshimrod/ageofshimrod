@@ -14,7 +14,7 @@ ageofshimrod.Player.prototype ={
         this.ressources.push(pierreInit);
         let boisInit = {
             "id" : ageofshimrod.C.RESSOURCE_BOIS,
-            "quantity" : 0
+            "quantity" : 100
         };
         this.ressources.push(boisInit);
 
