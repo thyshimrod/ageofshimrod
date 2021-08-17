@@ -65,10 +65,31 @@ ageofshimrod.Map.prototype ={
         })
     },
 
+    checkDecor : function(){
+        let decorToRemove = undefined;
+        for (let i=0;i<this.decors.length;i++){
+            if (typeof this.decors[i].ressource !== "undefined"){
+                if (this.decors[i].ressource.quantity === 0){
+                    decorToRemove = this.decors[i];
+                    break;
+                }
+            }
+        }
+        if (typeof decorToRemove !== "undefined"){
+            const index = this.decors.indexOf(decorToRemove);
+            if (index !== -1) {
+                this.decors.splice(index, 1);
+            }
+        }
+        
+    },
+
     gameLoop : function(){
         this.peons.forEach(function(peon){
             peon.gameLoop();
         })
+
+        this.checkDecor();
     },
 
     clickEvent : function(evt){

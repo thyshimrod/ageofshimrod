@@ -26,7 +26,8 @@ ageofshimrod.Peon.prototype ={
     manageGoToRessourceStatus : function(){
         if (typeof this.decor === "undefined"){
             for(let i=0;i<ageofshimrod.map.decors.length;i++){
-                if (this.affectation.ressource === ageofshimrod.map.decors[i].ressource.id){
+                if (this.affectation.ressource === ageofshimrod.map.decors[i].ressource.id
+                    && ageofshimrod.map.decors[i].ressource.quantity > 0){
                     this.decor = ageofshimrod.map.decors[i];
                     break;
                 }
@@ -69,10 +70,15 @@ ageofshimrod.Peon.prototype ={
                 this.ressource.id = this.decor.ressource.id;
                 this.ressource.quantity = 0;
             }else{
-                this.ressource.quantity += 1;
-                this.decor.ressource.quantity -= 1;
-                //TODO ANIMATION of collect
-                if (this.ressource.quantity >= 10){
+                if (this.decor.ressource.quantity > 0){
+                    this.ressource.quantity += 1;
+                    this.decor.ressource.quantity -= 1;
+                    //TODO ANIMATION of collect
+                    if (this.ressource.quantity >= 10){
+                        this.status = ageofshimrod.C.PEON_STATUS_GOTO_STOCK;
+                    }
+                }else{
+                    this.decor = undefined;
                     this.status = ageofshimrod.C.PEON_STATUS_GOTO_STOCK;
                 }
             }

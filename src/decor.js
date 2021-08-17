@@ -2,7 +2,7 @@
 var ageofshimrod = ageofshimrod || {};
 
 ageofshimrod.Decor = function (){
-    this.ressources = {};
+    this.ressource = {};
     this.x = 0;
     this.y = 0;
     this.tileset = "";
