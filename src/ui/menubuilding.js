@@ -20,13 +20,20 @@ ageofshimrod.MenuBuilding.prototype ={
     clickEvent : function(evt){
         //TODO Evaluate if click on window or outside
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){
-            for (let i=0;i<this.listOfBuildingToClick.length;i++){
-                if (evt.pageX > this.x && evt.pageX < (this.x + this.width)
-                 && evt.pageY > this.listOfBuildingToClick[i].y && evt.pageY < (this.listOfBuildingToClick[i].y + 100)){
-                     ageofshimrod.map.addBuilding(this.listOfBuildingToClick[i].id);
-                 }
+            if (evt.pageX > this.x && evt.pageX < (this.x + this.width)
+               && evt.pageY > this.y && evt.pageY < (this.y + this.height)){
+                for (let i=0;i<this.listOfBuildingToClick.length;i++){
+                    if (evt.pageY > this.listOfBuildingToClick[i].y && evt.pageY < (this.listOfBuildingToClick[i].y + 100)
+                     && this.listOfBuildingToClick[i].status === ageofshimrod.C.BUTTON_STATUS_OK){
+                         ageofshimrod.map.addBuilding(this.listOfBuildingToClick[i].id);
+                         this.toggle();
+                     }
+                }
+            }else{
+                this.toggle();
             }
-            this.toggle();
+            
+
             return ageofshimrod.C.CLICK_ON_WINDOW;
         }
         return ageofshimrod.C.CLICK_OUTSIDE_WINDOW;
@@ -60,29 +67,44 @@ ageofshimrod.MenuBuilding.prototype ={
             var _this = this;
             this.listOfBuildingToClick = [];
             for (let i = 0 ; i < ageofshimrod.Buildings.length;i++){
+                this.ctx.fillStyle = ageofshimrod.C.UI_BORDER_COLOR;
                 let bat = new ageofshimrod.Building();
                 bat.init(i);
                 bat.renderPosition(this.x + 5, y , this.ctx);
                 let text = bat.name;
-                let toClick = {
-                    "x" : this.x + 5,
-                    "y" : y,
-                    "name" : bat.name,
-                    "id" : i
-                };
-                this.listOfBuildingToClick.push(toClick);
+                
                 _this.ctx.fillText(text ,
                     _this.x + 70, 
                      y + 10);
+                let statusBtn = ageofshimrod.C.BUTTON_STATUS_OK;
                 for (let itMat = 0; itMat < bat.materiauxNeeded.length ; itMat++){
                     let mat = bat.materiauxNeeded[itMat];
                     let res = new ageofshimrod.Ressource();
                     res.init(mat.id);
                     res.renderPosition(_this.x + 100 + itMat*80, y + 20, _this.ctx);
+                    let statusMat = true;
+                    for (let itMatPlayer=0;itMatPlayer < ageofshimrod.player.ressources.length;itMatPlayer++){
+                        if (ageofshimrod.player.ressources[itMatPlayer].id === mat.id){
+                            if (ageofshimrod.player.ressources[itMatPlayer].quantity < mat.quantity){
+                                statusMat = false;
+                                statusBtn = ageofshimrod.C.BUTTON_STATUS_KO;
+                            }
+                        }
+                    }
+                    _this.ctx.fillStyle = statusMat  ? ageofshimrod.C.UI_BORDER_COLOR : ageofshimrod.C.UI_BORDER_RED;
                     text = mat.quantity;
                     _this.ctx.fillText(text ,
                         _this.x + 140 + itMat*80, y + 40,);
+                    
                 }
+                let toClick = {
+                    "x" : this.x + 5,
+                    "y" : y,
+                    "name" : bat.name,
+                    "id" : i,
+                    "status" : statusBtn
+                };
+                this.listOfBuildingToClick.push(toClick);
                 y += 120;
             }
             

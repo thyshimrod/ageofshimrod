@@ -55,6 +55,10 @@ ageofshimrod.Map.prototype ={
         this.status = ageofshimrod.C.MAP_STATUS_ADD_BUILDING;
         this.newBuilding = new ageofshimrod.Building();
         this.newBuilding.init(idBuilding);
+        var _this = this;
+        //this.newBuilding.materiaux.forEach(function(mat){
+
+        //})
     },
 
     gameLoop : function(){
