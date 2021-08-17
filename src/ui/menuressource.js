@@ -29,6 +29,11 @@ ageofshimrod.MenuRessource.prototype ={
         this.status = this.status === ageofshimrod.C.UI_STATUS_SHOW ? ageofshimrod.C.UI_STATUS_HIDDEN : ageofshimrod.C.UI_STATUS_SHOW;
     },
 
+
+    hideMenu : function(){
+        this.status = ageofshimrod.C.UI_STATUS_HIDDEN;
+    },
+
     render : function(){
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){
             this.ctx.beginPath();

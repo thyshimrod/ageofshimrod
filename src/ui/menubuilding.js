@@ -25,6 +25,10 @@ ageofshimrod.MenuBuilding.prototype ={
         return ageofshimrod.C.CLICK_OUTSIDE_WINDOW;
     },
 
+    hideMenu : function(){
+        this.status = ageofshimrod.C.UI_STATUS_HIDDEN;
+    },
+
     toggle : function(){
         this.status = this.status === ageofshimrod.C.UI_STATUS_SHOW ? ageofshimrod.C.UI_STATUS_HIDDEN : ageofshimrod.C.UI_STATUS_SHOW;
     },

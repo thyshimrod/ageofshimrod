@@ -21,10 +21,17 @@ ageofshimrod.IconMenu.prototype ={
         this.ctx = ageofshimrod.canvas.canvasAnimation.getContext("2d");
     },
 
+    closeMenu : function(){
+        ageofshimrod.menuPeon.hideMenu();
+        ageofshimrod.menuRessource.hideMenu();
+        ageofshimrod.menuBuilding.hideMenu();
+    },
+
     clickEvent : function(evt){
         for (let i = 0 ; i < this.icons.length ; i++){
             if (evt.pageX > this.icons[i].x && evt.pageX < (this.icons[i].x + 32)
             && evt.pageY > this.icons[i].y && evt.pageY < (this.icons[i].y + 32)){
+                this.closeMenu();
                 if(this.icons[i].name === 'ressource'){
                     ageofshimrod.menuRessource.toggle();
                 }else if(this.icons[i].name === 'peon'){
