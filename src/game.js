@@ -2,6 +2,8 @@
 var ageofshimrod = ageofshimrod || {};
 
 ageofshimrod.GameEngine = function (){
+  this.mouseX = 0;
+  this.mouseY = 0;
 }
 
 ageofshimrod.GameEngine.prototype ={
@@ -15,6 +17,11 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.menuPeon.render();
     ageofshimrod.menuBuilding.render();
     ageofshimrod.map.gameLoop();
+  },
+
+  mouseMove : function(evt){
+    ageofshimrod.gameEngine.mouseX = evt.pageX;
+    ageofshimrod.gameEngine.mouseY = evt.pageY;
   },
 
   clickEvent : function(evt){
@@ -35,6 +42,7 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.canvas.init();
     ageofshimrod.canvas.setCanvasSize(window.innerWidth,window.innerHeight);
     ageofshimrod.canvas.canvasMouse.addEventListener("click",ageofshimrod.gameEngine.clickEvent);
+    ageofshimrod.canvas.canvasMouse.addEventListener("mousemove",ageofshimrod.gameEngine.mouseMove);
     ageofshimrod.tileset = new ageofshimrod.Tileset();
     ageofshimrod.map = new ageofshimrod.Map();
     ageofshimrod.map.init();

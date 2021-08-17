@@ -8,6 +8,7 @@ ageofshimrod.MenuBuilding = function (){
     this.height = 400;
     this.ctx = undefined;
     this.status = ageofshimrod.C.UI_STATUS_HIDDEN;
+    this.listOfBuildingToClick = [];
 }
 
 ageofshimrod.MenuBuilding.prototype ={
@@ -19,6 +20,12 @@ ageofshimrod.MenuBuilding.prototype ={
     clickEvent : function(evt){
         //TODO Evaluate if click on window or outside
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){
+            for (let i=0;i<this.listOfBuildingToClick.length;i++){
+                if (evt.pageX > this.x && evt.pageX < (this.x + this.width)
+                 && evt.pageY > this.listOfBuildingToClick[i].y && evt.pageY < (this.listOfBuildingToClick[i].y + 100)){
+                     ageofshimrod.map.addBuilding(this.listOfBuildingToClick[i].id);
+                 }
+            }
             this.toggle();
             return ageofshimrod.C.CLICK_ON_WINDOW;
         }
@@ -51,12 +58,19 @@ ageofshimrod.MenuBuilding.prototype ={
 
             let y = this.y + 30;
             var _this = this;
-            
+            this.listOfBuildingToClick = [];
             for (let i = 0 ; i < ageofshimrod.Buildings.length;i++){
                 let bat = new ageofshimrod.Building();
                 bat.init(i);
                 bat.renderPosition(this.x + 5, y , this.ctx);
                 let text = bat.name;
+                let toClick = {
+                    "x" : this.x + 5,
+                    "y" : y,
+                    "name" : bat.name,
+                    "id" : i
+                };
+                this.listOfBuildingToClick.push(toClick);
                 _this.ctx.fillText(text ,
                     _this.x + 70, 
                      y + 10);

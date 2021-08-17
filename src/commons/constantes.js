@@ -38,4 +38,7 @@ ageofshimrod.C = Object.freeze({
   DIRECTION_LEFT :1,
   DIRECTION_RIGHT :2,
 
+  MAP_STATUS_NORMAL : 0,
+  MAP_STATUS_ADD_BUILDING : 1,
+
 });

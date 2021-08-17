@@ -12,6 +12,8 @@ ageofshimrod.Map = function (){
     this.peons = [];
     this.decors = [];
     this.buildings = [];
+    this.status = ageofshimrod.C.MAP_STATUS_NORMAL;
+    this.newBuilding = undefined;
 }
 
 ageofshimrod.Map.prototype ={
@@ -49,6 +51,12 @@ ageofshimrod.Map.prototype ={
         this.peons.push(peon);
     },
 
+    addBuilding : function(idBuilding){
+        this.status = ageofshimrod.C.MAP_STATUS_ADD_BUILDING;
+        this.newBuilding = new ageofshimrod.Building();
+        this.newBuilding.init(idBuilding);
+    },
+
     gameLoop : function(){
         this.peons.forEach(function(peon){
             peon.gameLoop();
@@ -56,18 +64,27 @@ ageofshimrod.Map.prototype ={
     },
 
     clickEvent : function(evt){
-        for (let i=0;i < this.decors.length ; i++){
-            if (this.decors[i].x < evt.pageX && evt.pageX < (this.decors[i].x + this.decors[i].sizeX)
-            && this.decors[i].y < evt.pageY && evt.pageY < (this.decors[i].y + this.decors[i].sizeY)){
-                ageofshimrod.contextualOnDecor.decor = this.decors[i];
-                ageofshimrod.contextualOnDecor.toggle();
+        if (this.status === ageofshimrod.C.MAP_STATUS_ADD_BUILDING){
+            this.newBuilding.x = ageofshimrod.gameEngine.mouseX;
+            this.newBuilding.y = ageofshimrod.gameEngine.mouseY;
+            this.buildings.push(this.newBuilding);
+            this.newBuilding = undefined;
+            this.status = ageofshimrod.C.MAP_STATUS_NORMAL;
+
+        }else{
+            for (let i=0;i < this.decors.length ; i++){
+                if (this.decors[i].x < evt.pageX && evt.pageX < (this.decors[i].x + this.decors[i].sizeX)
+                && this.decors[i].y < evt.pageY && evt.pageY < (this.decors[i].y + this.decors[i].sizeY)){
+                    ageofshimrod.contextualOnDecor.decor = this.decors[i];
+                    ageofshimrod.contextualOnDecor.toggle();
+                }
             }
-        }
-        for (let i=0;i < this.buildings.length ; i++){
-            if (this.buildings[i].x < evt.pageX && evt.pageX < (this.buildings[i].x +64)
-            && this.buildings[i].y < evt.pageY && evt.pageY < (this.buildings[i].y +64)){
-                ageofshimrod.contextualOnBuilding.building = this.buildings[i];
-                ageofshimrod.contextualOnBuilding.toggle();
+            for (let i=0;i < this.buildings.length ; i++){
+                if (this.buildings[i].x < evt.pageX && evt.pageX < (this.buildings[i].x +64)
+                && this.buildings[i].y < evt.pageY && evt.pageY < (this.buildings[i].y +64)){
+                    ageofshimrod.contextualOnBuilding.building = this.buildings[i];
+                    ageofshimrod.contextualOnBuilding.toggle();
+                }
             }
         }
 
@@ -113,5 +130,11 @@ ageofshimrod.Map.prototype ={
         this.buildings.forEach(function(building){
             building.render();
         })
+
+        if (this.status === ageofshimrod.C.MAP_STATUS_ADD_BUILDING){
+            if (typeof this.newBuilding !== "undefined"){
+                this.newBuilding.renderPosition(ageofshimrod.gameEngine.mouseX,ageofshimrod.gameEngine.mouseY,this.ctx);
+            }
+        }
     }
 }
