@@ -11,12 +11,19 @@ ageofshimrod.LevelEditor = function (){
     this.tileGrassY = 64;
     this.sizeX = 100;
     this.sizeY = 100;
+    this.decor = undefined;
 }
 
 ageofshimrod.LevelEditor.prototype ={
     init : function (){
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
+    },
+
+    chooseDecor : function(idDecor){
+        let decor = new ageofshimrod.Decor();
+        decor.init(idDecor);
+        this.decor = decor;
     },
 
     render : function(){
@@ -35,6 +42,10 @@ ageofshimrod.LevelEditor.prototype ={
                         32);
                 }
             }
+        }
+
+        if (typeof this.decor !== "undefined"){
+            this.decor.renderPosition(ageofshimrod.gameEditor.mouseX,ageofshimrod.gameEditor.mouseY,this.ctx);
         }
     }
 }

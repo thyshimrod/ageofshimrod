@@ -2,7 +2,8 @@
 var ageofshimrod = ageofshimrod || {};
 
 ageofshimrod.GameEditor = function (){
-
+    this.mouseX = 0;
+    this.mouseY = 0;
 }
 
 ageofshimrod.GameEditor.prototype ={
@@ -31,7 +32,8 @@ ageofshimrod.GameEditor.prototype ={
     },
 
     mouseMoveEvent : function(evt){
-        
+        ageofshimrod.gameEditor.mouseX = evt.pageX;
+        ageofshimrod.gameEditor.mouseY = evt.pageY;
     }
 }
 
