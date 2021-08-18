@@ -42,7 +42,7 @@ ageofshimrod.MenuPeon.prototype ={
             this.ctx.strokeStyle = ageofshimrod.C.UI_BORDER_COLOR;
             this.ctx.rect(this.x,this.y, this.width, this.height);
             this.ctx.stroke();
-            this.ctx.font = "1Opx Arial";
+            this.ctx.font = "10px Verdana";
             this.ctx.fillStyle = ageofshimrod.C.UI_FONT_COLOR;
             let text = "Peons";
             this.ctx.fillText(text ,

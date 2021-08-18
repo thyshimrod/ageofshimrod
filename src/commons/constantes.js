@@ -41,4 +41,8 @@ ageofshimrod.C = Object.freeze({
   MAP_STATUS_NORMAL : 0,
   MAP_STATUS_ADD_BUILDING : 1,
 
+  GAME_STATUS_START : 0,
+  GAME_STATUS_INGAME : 1,
+  GAME_STATUS_ENDGAME : 2,
+
 });
