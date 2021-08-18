@@ -47,6 +47,7 @@ ageofshimrod.MenuDecor.prototype ={
             for (let i=0;i<ageofshimrod.Decors.length;i++){
                 heightY += ageofshimrod.Decors[i].size.y +10;
             }
+            this.height = heightY;
             this.ctx.beginPath();
             this.ctx.fillStyle = ageofshimrod.C.UI_RECT_COLOR;
             this.ctx.fillRect(this.x,this.y,this.width,heightY +30);
