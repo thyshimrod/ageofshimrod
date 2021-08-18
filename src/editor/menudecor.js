@@ -19,14 +19,16 @@ ageofshimrod.MenuDecor.prototype ={
     clickEvent : function(evt){
         //TODO Evaluate if click on window or outside
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){
-            for (let i = 0 ; i < this.btnDecor.length ; i++){
-                if (evt.pageX > this.btnDecor[i].x && evt.pageX < (this.btnDecor[i].x + this.btnDecor[i].sizeX)
-                && evt.pageY > this.btnDecor[i].y && evt.pageY < (this.btnDecor[i].y + this.btnDecor[i].sizeY)){
-                    ageofshimrod.levelEditor.chooseDecor(this.btnDecor[i].id);
+            if (evt.pageX > this.x && evt.pageX < (this.x + this.width)
+                && evt.pageY > this.y && evt.pageY < (this.y + this.height)){
+                for (let i = 0 ; i < this.btnDecor.length ; i++){
+                    if (evt.pageX > this.btnDecor[i].x && evt.pageX < (this.btnDecor[i].x + this.btnDecor[i].sizeX)
+                    && evt.pageY > this.btnDecor[i].y && evt.pageY < (this.btnDecor[i].y + this.btnDecor[i].sizeY)){
+                        ageofshimrod.levelEditor.chooseDecor(this.btnDecor[i].id);
+                    }
                 }
-                
+                return ageofshimrod.C.CLICK_ON_WINDOW;
             }
-            return ageofshimrod.C.CLICK_ON_WINDOW;
         }
         return ageofshimrod.C.CLICK_OUTSIDE_WINDOW;
     },

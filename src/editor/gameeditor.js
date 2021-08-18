@@ -28,7 +28,9 @@ ageofshimrod.GameEditor.prototype ={
     },
 
     clickEvent : function(evt){
-      ageofshimrod.menuDecor.clickEvent(evt);
+      let clickStatus = ageofshimrod.menuDecor.clickEvent(evt)
+      || ageofshimrod.levelEditor.clickEvent(evt);
+      
     },
 
     mouseMoveEvent : function(evt){

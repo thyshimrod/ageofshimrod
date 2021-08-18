@@ -26,6 +26,16 @@ ageofshimrod.LevelEditor.prototype ={
         this.decor = decor;
     },
 
+    clickEvent : function(evt){
+        if (typeof this.decor !== "undefined"){
+            let decor = new ageofshimrod.Decor();
+            decor.init(this.decor.id);
+            decor.x = ageofshimrod.gameEditor.mouseX;
+            decor.y = ageofshimrod.gameEditor.mouseY;
+            this.decors.push(decor);
+        }
+    },
+
     render : function(){
         for (let i = 0 ; i < this.sizeX ; i++){
             for (let j = 0 ; j < this.sizeY ; j++){
@@ -43,6 +53,11 @@ ageofshimrod.LevelEditor.prototype ={
                 }
             }
         }
+
+        var _this = this;
+        this.decors.forEach(function(decor){
+            decor.render();
+        })
 
         if (typeof this.decor !== "undefined"){
             this.decor.renderPosition(ageofshimrod.gameEditor.mouseX,ageofshimrod.gameEditor.mouseY,this.ctx);

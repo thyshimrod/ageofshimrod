@@ -13,10 +13,12 @@ ageofshimrod.Decor = function (){
     this.sizeY = 0;
     this.ctx = undefined;
     this.name = "";
+    this.id = -1;
 }
 
 ageofshimrod.Decor.prototype ={
     init : function(templateId){
+        this.id = templateId;
         var src = ageofshimrod.Decors[templateId];
         this.name = src.name;
         this.tx = src.sprite.x;
