@@ -2,8 +2,8 @@
 var ageofshimrod = ageofshimrod || {};
 
 ageofshimrod.Map = function (){
-    this.sizeX = 300;
-    this.sizeY = 300;
+    this.sizeX = 100;
+    this.sizeY = 100;
     this.tileset = "./assets/tileset/tileset1.png";
     this.tileGrassX = 192;
     this.tileGrassY = 64;

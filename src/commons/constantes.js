@@ -17,8 +17,8 @@ ageofshimrod.C = Object.freeze({
   RESSOURCE_PIERRE : 1,
   RESSOURCE_BOIS : 2,
 
-  DECOR_PIERRE : 1,
-  DECOR_ARBRE : 2,
+  DECOR_PIERRE : 0,
+  DECOR_ARBRE : 1,
 
   BUILDING_HOUSE : 0,
   BUILDING_LUMBER : 1,
