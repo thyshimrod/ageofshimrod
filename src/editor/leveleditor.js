@@ -27,6 +27,8 @@ ageofshimrod.LevelEditor.prototype ={
     },
 
     clickEvent : function(evt){
+        //TODO :planter sur une case /32 ... 
+        //TODO : vérifier qu'un decor n'existe pas déjà sur cette case
         if (typeof this.decor !== "undefined"){
             let decor = new ageofshimrod.Decor();
             decor.init(this.decor.id);

@@ -22,5 +22,25 @@ ageofshimrod.Decors = [
             "id" : ageofshimrod.C.RESSOURCE_BOIS,
             "quantity" : 1000
         }
+    },
+    {
+        "name"    : "Arbre mort",
+        "tileset" : "assets/tileset/tileset1.png",
+        "sprite" : { "x" : 0, "y" : 1120},
+        "size" : { "x" : 32, "y" : 64},
+        "ressources" : {
+            "id" : ageofshimrod.C.RESSOURCE_BOIS,
+            "quantity" : 200
+        }
+    },
+    {
+        "name"    : "Petit rocher",
+        "tileset" : "assets/tileset/tileset1.png",
+        "sprite" : { "x" : 32, "y" : 1792},
+        "size" : { "x" : 32, "y" : 32},
+        "ressources" : {
+            "id" : ageofshimrod.C.RESSOURCE_BOIS,
+            "quantity" : 200
+        }
     }
 ]

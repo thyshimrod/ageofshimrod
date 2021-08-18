@@ -43,12 +43,16 @@ ageofshimrod.MenuDecor.prototype ={
 
     render : function(){
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){
+            let heightY = 0;
+            for (let i=0;i<ageofshimrod.Decors.length;i++){
+                heightY += ageofshimrod.Decors[i].size.y +10;
+            }
             this.ctx.beginPath();
             this.ctx.fillStyle = ageofshimrod.C.UI_RECT_COLOR;
-            this.ctx.fillRect(this.x,this.y,this.width,this.height);
+            this.ctx.fillRect(this.x,this.y,this.width,heightY +30);
             this.ctx.beginPath();
             this.ctx.strokeStyle = ageofshimrod.C.UI_BORDER_COLOR;
-            this.ctx.rect(this.x,this.y, this.width, this.height);
+            this.ctx.rect(this.x,this.y, this.width, heightY +30);
             this.ctx.stroke();
             this.ctx.font = "10px Verdana";
             this.ctx.fillStyle = ageofshimrod.C.UI_FONT_COLOR;
@@ -72,7 +76,6 @@ ageofshimrod.MenuDecor.prototype ={
                 };
                 this.btnDecor.push(btn);
                 spaceY = spaceY + decor.sizeY + 10;
-                
             }
         }
     },
