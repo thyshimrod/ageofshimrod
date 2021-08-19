@@ -35,14 +35,20 @@ ageofshimrod.Decor.prototype ={
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
     },
 
+    loadFromJs : function(decorJs){
+        this.init(decorJs.id);
+        this.x = decorJs.x;
+        this.y = decorJs.y;
+    },
+
     getJs : function(){
         let decorJs = {};
-        decorJs.id = this.templateId;
+        decorJs.id = this.id;
         decorJs.x = this.x;
         decorJs.y = this.y;
         return decorJs;
       },
-      
+
     renderPosition : function(x,y,ctx){
         ctx.drawImage(
             this.spriteset,

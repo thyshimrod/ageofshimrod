@@ -17,20 +17,30 @@ ageofshimrod.Map = function (){
 }
 
 ageofshimrod.Map.prototype ={
+    initFromJs : function(levelJs){
+        var _this = this;
+        levelJs.decors.forEach(function(decorjs){
+            let decor = new ageofshimrod.Decor();
+            decor.loadFromJs(decorjs);
+            _this.decors.push(decor);
+        })
+    },
+
+
     init : function(){
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
         
-        let stone = new ageofshimrod.Decor();
-        stone.init(ageofshimrod.C.DECOR_PIERRE);
-        stone.x = 512;
-        stone.y = 256;
-        this.decors.push(stone);
-        let arbre = new ageofshimrod.Decor();
-        arbre.init(ageofshimrod.C.DECOR_ARBRE)
-        arbre.x = 768;
-        arbre.y = 512;
-        this.decors.push(arbre);
+        var objLevel = JSON.parse(localStorage.getItem('levelJs'));
+        if (typeof objLevel !== 'undefined' && objLevel !== null){
+            console.log("here");
+            console.log(objLevel);
+            this.initFromJs(objLevel);
+        }else{
+            if(typeof ageofshimrod.Levels !== "undefined" && ageofshimrod.Levels.length>0){
+                this.initFromJs(ageofshimrod.Levels[0]);
+            }
+        }
         let house = new ageofshimrod.Building();
         house.init(ageofshimrod.C.BUILDING_HOUSE);
         house.x = 100;

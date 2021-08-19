@@ -16,9 +16,29 @@ ageofshimrod.LevelEditor = function (){
 }
 
 ageofshimrod.LevelEditor.prototype ={
+
+    initFromJs : function(levelJs){
+        var _this = this;
+        levelJs.decors.forEach(function(decorjs){
+            let decor = new ageofshimrod.Decor();
+            decor.loadFromJs(decorjs);
+            _this.decors.push(decor);
+        })
+    },
+
     init : function (){
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
+        var objLevel = JSON.parse(localStorage.getItem('levelJs'));
+        if (typeof objLevel !== 'undefined' && objLevel !== null){
+            console.log("here");
+            console.log(objLevel);
+            this.initFromJs(objLevel);
+        }else{
+            if(typeof ageofshimrod.Levels !== "undefined" && ageofshimrod.Levels.length>0){
+                this.initFromJs(ageofshimrod.Levels[0]);
+            }
+        }
     },
 
     chooseDecor : function(idDecor){
@@ -29,12 +49,6 @@ ageofshimrod.LevelEditor.prototype ={
 
     saveToJs : function(){
         var saveJs = {};
-        /*var tiles = [];
-        this.tiles.forEach(function(tile){
-            let tileJs = tile.getJs();
-            tiles.push(tileJs);
-        })*/
-        //saveJs.tiles = tiles;
         var decors = [];
         this.decors.forEach(function(decor){
             let decorJs = decor.getJs();
@@ -42,8 +56,6 @@ ageofshimrod.LevelEditor.prototype ={
         })
         saveJs.decors = decors;
         saveJs.name = this.name;
-        //saveJs.maxX = this.maxX;
-        //saveJs.maxY = this.maxY;
         localStorage.setItem(this.name, JSON.stringify(saveJs));
     },
 
