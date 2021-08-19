@@ -7,6 +7,9 @@ ageofshimrod.EditorIconMenu = function (){
         { 
             "x" : 0, "y" : 0, "src" : "./assets/icones/save.png", "name" : "save"
         },
+        { 
+            "x" : 32, "y" : 0, "src" : "./assets/icones/destroy.png", "name" : "destroy"
+        },
     ]
 }
 
@@ -21,6 +24,9 @@ ageofshimrod.EditorIconMenu.prototype ={
             && evt.pageY > this.icons[i].y && evt.pageY < (this.icons[i].y + 32)){
                 if(this.icons[i].name === 'save'){
                     ageofshimrod.levelEditor.saveToJs();
+                }else if (this.icons[i].name === 'destroy'){
+                    ageofshimrod.levelEditor.decor = undefined;
+                    ageofshimrod.levelEditor.status = ageofshimrod.C.EDITOR_STATUS_REMOVE_DECOR;
                 }
                 return ageofshimrod.C.CLICK_ON_WINDOW;
             }

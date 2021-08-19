@@ -13,6 +13,7 @@ ageofshimrod.LevelEditor = function (){
     this.sizeY = 100;
     this.decor = undefined;
     this.name = "levelJs";
+    this.status = ageofshimrod.C.EDITOR_STATUS_NONE;
 }
 
 ageofshimrod.LevelEditor.prototype ={
@@ -31,8 +32,6 @@ ageofshimrod.LevelEditor.prototype ={
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
         var objLevel = JSON.parse(localStorage.getItem('levelJs'));
         if (typeof objLevel !== 'undefined' && objLevel !== null){
-            console.log("here");
-            console.log(objLevel);
             this.initFromJs(objLevel);
         }else{
             if(typeof ageofshimrod.Levels !== "undefined" && ageofshimrod.Levels.length>0){
@@ -45,6 +44,7 @@ ageofshimrod.LevelEditor.prototype ={
         let decor = new ageofshimrod.Decor();
         decor.init(idDecor);
         this.decor = decor;
+        this.status = ageofshimrod.C.EDITOR_STATUS_ADD_DECOR;
     },
 
     saveToJs : function(){
@@ -62,12 +62,34 @@ ageofshimrod.LevelEditor.prototype ={
     clickEvent : function(evt){
         //TODO :planter sur une case /32 ... 
         //TODO : vérifier qu'un decor n'existe pas déjà sur cette case
-        if (typeof this.decor !== "undefined"){
-            let decor = new ageofshimrod.Decor();
-            decor.init(this.decor.id);
-            decor.x = ageofshimrod.gameEditor.mouseX;
-            decor.y = ageofshimrod.gameEditor.mouseY;
-            this.decors.push(decor);
+        if (ageofshimrod.levelEditor.status === ageofshimrod.C.EDITOR_STATUS_ADD_DECOR){
+            if (typeof ageofshimrod.levelEditor.decor !== "undefined"){
+                let decor = new ageofshimrod.Decor();
+                decor.init(ageofshimrod.levelEditor.decor.id);
+                decor.x = Math.round(ageofshimrod.gameEditor.mouseX/32)*32;
+                decor.y = Math.round(ageofshimrod.gameEditor.mouseY/32)*32;
+                let found = false;
+                for (let i=0;i<ageofshimrod.levelEditor.decors.length;i++){
+                    if (ageofshimrod.levelEditor.decors[i].x === decor.x && ageofshimrod.levelEditor.decors[i].y === decor.y){
+                        found = true;
+                        break
+                    }
+                }
+                if (!found) ageofshimrod.levelEditor.decors.push(decor);
+            }
+        }else if (ageofshimrod.levelEditor.status === ageofshimrod.C.EDITOR_STATUS_REMOVE_DECOR){
+            let x = Math.round(ageofshimrod.gameEditor.mouseX/32)*32;
+            let y = Math.round(ageofshimrod.gameEditor.mouseY/32)*32;
+            let indexDecor = -1;
+            for (let i=0;i<ageofshimrod.levelEditor.decors.length;i++){
+                if (ageofshimrod.levelEditor.decors[i].x === x && ageofshimrod.levelEditor.decors[i].y === y){
+                    indexDecor = i;
+                    break
+                }
+            }
+            if (indexDecor !== -1){
+                ageofshimrod.levelEditor.decors.splice(indexDecor, 1);
+            }
         }
     },
 
