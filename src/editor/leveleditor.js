@@ -12,6 +12,7 @@ ageofshimrod.LevelEditor = function (){
     this.sizeX = 100;
     this.sizeY = 100;
     this.decor = undefined;
+    this.name = "levelJs";
 }
 
 ageofshimrod.LevelEditor.prototype ={
@@ -24,6 +25,26 @@ ageofshimrod.LevelEditor.prototype ={
         let decor = new ageofshimrod.Decor();
         decor.init(idDecor);
         this.decor = decor;
+    },
+
+    saveToJs : function(){
+        var saveJs = {};
+        /*var tiles = [];
+        this.tiles.forEach(function(tile){
+            let tileJs = tile.getJs();
+            tiles.push(tileJs);
+        })*/
+        //saveJs.tiles = tiles;
+        var decors = [];
+        this.decors.forEach(function(decor){
+            let decorJs = decor.getJs();
+            decors.push(decorJs);
+        })
+        saveJs.decors = decors;
+        saveJs.name = this.name;
+        //saveJs.maxX = this.maxX;
+        //saveJs.maxY = this.maxY;
+        localStorage.setItem(this.name, JSON.stringify(saveJs));
     },
 
     clickEvent : function(evt){

@@ -11,6 +11,7 @@ ageofshimrod.GameEditor.prototype ={
     gameLoop: function (){
       ageofshimrod.levelEditor.render();
       ageofshimrod.menuDecor.render();
+      ageofshimrod.editorIconMenu.render();
     },
 
     init : function(){
@@ -22,13 +23,16 @@ ageofshimrod.GameEditor.prototype ={
         ageofshimrod.levelEditor.init();
         ageofshimrod.menuDecor = new ageofshimrod.MenuDecor();
         ageofshimrod.menuDecor.init();
+        ageofshimrod.editorIconMenu = new ageofshimrod.EditorIconMenu();
+        ageofshimrod.editorIconMenu.init();
         
         var ctx = ageofshimrod.canvas.canvasMouse.addEventListener('mousemove', ageofshimrod.gameEditor.mouseMoveEvent);
         var ctx = ageofshimrod.canvas.canvasMouse.addEventListener('click', ageofshimrod.gameEditor.clickEvent);
     },
 
     clickEvent : function(evt){
-      let clickStatus = ageofshimrod.menuDecor.clickEvent(evt)
+      let clickStatus = ageofshimrod.editorIconMenu.clickEvent(evt)
+      || ageofshimrod.menuDecor.clickEvent(evt)
       || ageofshimrod.levelEditor.clickEvent(evt);
       
     },

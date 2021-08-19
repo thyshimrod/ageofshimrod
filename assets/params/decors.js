@@ -42,5 +42,15 @@ ageofshimrod.Decors = [
             "id" : ageofshimrod.C.RESSOURCE_BOIS,
             "quantity" : 200
         }
+    },
+    {
+        "name"    : "Salades",
+        "tileset" : "assets/tileset/tileset1.png",
+        "sprite" : { "x" : 224, "y" : 1088},
+        "size" : { "x" : 32, "y" : 32},
+        "ressources" : {
+            "id" : ageofshimrod.C.RESSOURCE_FOOD,
+            "quantity" : 200
+        }
     }
 ]
