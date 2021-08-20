@@ -21,6 +21,7 @@ ageofshimrod.GameEngine.prototype ={
       ageofshimrod.menuPeon.render();
       ageofshimrod.menuBuilding.render();
       ageofshimrod.map.gameLoop();
+
     }
   },
 
@@ -51,6 +52,7 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.map.init();
     ageofshimrod.player = new ageofshimrod.Player();
     ageofshimrod.player.init();
+    ageofshimrod.recordGame.init();
     ageofshimrod.gameEngine.status = ageofshimrod.C.GAME_STATUS_INGAME;
   },
 
@@ -78,6 +80,7 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.startGame = new ageofshimrod.StartGame();
     ageofshimrod.startGame.init();
     ageofshimrod.startGame.showMenu();
+    ageofshimrod.recordGame = new ageofshimrod.RecordGame();
   },
 }
 

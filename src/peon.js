@@ -115,8 +115,11 @@ ageofshimrod.Peon.prototype ={
         }else{
             for (let i=0;i < ageofshimrod.player.ressources.length;i++){
                 if (ageofshimrod.player.ressources[i].id === this.ressource.id){
+                    let data = { "idRessource" : this.ressource.id, "quantity" : this.ressource.quantity};
+                    ageofshimrod.recordGame.addRecord(ageofshimrod.C.RECORD_RECOLT,data);
                     ageofshimrod.player.ressources[i].quantity += this.ressource.quantity;
                     this.ressource.quantity = 0;
+                    
                     break;
                 }
             }

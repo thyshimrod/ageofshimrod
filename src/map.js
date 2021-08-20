@@ -33,8 +33,6 @@ ageofshimrod.Map.prototype ={
         
         var objLevel = JSON.parse(localStorage.getItem('levelJs'));
         if (typeof objLevel !== 'undefined' && objLevel !== null){
-            console.log("here");
-            console.log(objLevel);
             this.initFromJs(objLevel);
         }else{
             if(typeof ageofshimrod.Levels !== "undefined" && ageofshimrod.Levels.length>0){
