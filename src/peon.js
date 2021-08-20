@@ -39,7 +39,7 @@ ageofshimrod.Peon.prototype ={
                 this.x += this.step;
                 this.direction = ageofshimrod.C.DIRECTION_RIGHT;
             } 
-            if (this.x > (this.decor.x + this.decor.sizeX ) ){
+            if (this.x > (this.decor.x  ) ){
                 this.x -= this.step;
                 this.direction = ageofshimrod.C.DIRECTION_LEFT;
             } 
@@ -47,7 +47,7 @@ ageofshimrod.Peon.prototype ={
                 this.y += this.step;
                 this.direction = ageofshimrod.C.DIRECTION_DOWN;
             } 
-            if (this.y > (this.decor.y + this.decor.sizeY ) ){
+            if (this.y > (this.decor.y  ) ){
                 this.y -= this.step;
                 this.direction = ageofshimrod.C.DIRECTION_UP  
             } 
