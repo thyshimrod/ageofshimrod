@@ -32,9 +32,13 @@ ageofshimrod.LevelEditor.prototype ={
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
         var objLevel = JSON.parse(localStorage.getItem('levelJs'));
         if (typeof objLevel !== 'undefined' && objLevel !== null){
+            console.log("localstorage");
+            console.log(objLevel);
             this.initFromJs(objLevel);
         }else{
+            console.log("From Js");
             if(typeof ageofshimrod.Levels !== "undefined" && ageofshimrod.Levels.length>0){
+                console.log(ageofshimrod.Levels)
                 this.initFromJs(ageofshimrod.Levels[0]);
             }
         }
