@@ -26,6 +26,13 @@ ageofshimrod.ContextualOnDecor.prototype ={
         return ageofshimrod.C.CLICK_OUTSIDE_WINDOW;
     },
 
+    showMenu : function(decor){
+        this.decor = decor;
+        this.x = decor.x - 100;
+        this.y = decor.y - 100;
+        this.status = ageofshimrod.C.UI_STATUS_SHOW;
+    },
+
     toggle : function(){
         this.status = this.status === ageofshimrod.C.UI_STATUS_SHOW ? ageofshimrod.C.UI_STATUS_HIDDEN : ageofshimrod.C.UI_STATUS_SHOW;
     },

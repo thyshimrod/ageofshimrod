@@ -147,8 +147,7 @@ ageofshimrod.Map.prototype ={
             for (let i=0;i < this.decors.length ; i++){
                 if (this.decors[i].x < evt.pageX && evt.pageX < (this.decors[i].x + this.decors[i].sizeX)
                 && this.decors[i].y < evt.pageY && evt.pageY < (this.decors[i].y + this.decors[i].sizeY)){
-                    ageofshimrod.contextualOnDecor.decor = this.decors[i];
-                    ageofshimrod.contextualOnDecor.toggle();
+                    ageofshimrod.contextualOnDecor.showMenu(this.decors[i]);
                 }
             }
             for (let i=0;i < this.buildings.length ; i++){
