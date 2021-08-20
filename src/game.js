@@ -30,6 +30,11 @@ ageofshimrod.GameEngine.prototype ={
     }
   },
 
+  changeStatus : function(newStatus){
+    ageofshimrod.canvas.clearCanvas();
+    this.status = newStatus;
+  },
+
   mouseMove : function(evt){
     ageofshimrod.gameEngine.mouseX = evt.pageX;
     ageofshimrod.gameEngine.mouseY = evt.pageY;
@@ -60,7 +65,7 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.player = new ageofshimrod.Player();
     ageofshimrod.player.init();
     ageofshimrod.recordGame.init();
-    ageofshimrod.gameEngine.status = ageofshimrod.C.GAME_STATUS_INGAME;
+    ageofshimrod.gameEngine.chnageStatus(ageofshimrod.C.GAME_STATUS_INGAME);
   },
 
   init : function(){

@@ -51,7 +51,7 @@ ageofshimrod.RecordGame.prototype ={
             }
         }
         if (result){
-            ageofshimrod.gameEngine.status = ageofshimrod.C.GAME_STATUS_ENDGAME;
+            ageofshimrod.gameEngine.chnageStatus(ageofshimrod.C.GAME_STATUS_ENDGAME);
         }
         console.log(this.listOfObjectifs);
     },
