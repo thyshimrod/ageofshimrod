@@ -65,7 +65,7 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.player = new ageofshimrod.Player();
     ageofshimrod.player.init();
     ageofshimrod.recordGame.init();
-    ageofshimrod.gameEngine.chnageStatus(ageofshimrod.C.GAME_STATUS_INGAME);
+    ageofshimrod.gameEngine.changeStatus(ageofshimrod.C.GAME_STATUS_INGAME);
   },
 
   init : function(){
