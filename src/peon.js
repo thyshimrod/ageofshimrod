@@ -95,23 +95,23 @@ ageofshimrod.Peon.prototype ={
     },
 
     manageGoToStock : function(){
-        if (this.x < (this.affectation.x - 21) ){
+        if (this.x < (this.affectation.x ) ){
             this.x += this.step;
             this.direction = ageofshimrod.C.DIRECTION_RIGHT;
         } 
-        if (this.x > (this.affectation.x + 32 +10) ){
+        if (this.x > (this.affectation.x) ){
             this.x -= this.step;
             this.direction = ageofshimrod.C.DIRECTION_LEFT;
         } 
-        if (this.y < (this.affectation.y - 21) ){
+        if (this.y < (this.affectation.y) ){
             this.y += this.step;
             this.direction = ageofshimrod.C.DIRECTION_DOWN;
         } 
-        if (this.y > (this.affectation.y + 32 +10) ){
+        if (this.y > (this.affectation.y ) ){
             this.y -= this.step;
             this.direction = ageofshimrod.C.DIRECTION_UP  
         } 
-        if (calcDistance(this,this.affectation) > 64){
+        if (calcDistance(this,this.affectation) > 32){
             this.animation += 1;
             if (this.animation > 2) this.animation = 0;
         }else{
