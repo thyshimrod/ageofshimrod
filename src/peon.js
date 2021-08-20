@@ -5,6 +5,8 @@ ageofshimrod.Peon = function (){
     this.x = 0;
     this.y = 0;
     this.tileset = "./assets/sprite/adam.png";
+    this.sizeX = 32;
+    this.sizeY = 32;
     this.spriteset = undefined;
     this.ctx = undefined;
     this.house = undefined;
@@ -33,19 +35,19 @@ ageofshimrod.Peon.prototype ={
                 }
             }
         }else{
-            if (this.x < (this.decor.x - 21) ){
+            if (this.x < (this.decor.x ) ){
                 this.x += this.step;
                 this.direction = ageofshimrod.C.DIRECTION_RIGHT;
             } 
-            if (this.x > (this.decor.x + this.decor.sizeX +10) ){
+            if (this.x > (this.decor.x + this.decor.sizeX ) ){
                 this.x -= this.step;
                 this.direction = ageofshimrod.C.DIRECTION_LEFT;
             } 
-            if (this.y < (this.decor.y - 21) ){
+            if (this.y < (this.decor.y ) ){
                 this.y += this.step;
                 this.direction = ageofshimrod.C.DIRECTION_DOWN;
             } 
-            if (this.y > (this.decor.y + this.decor.sizeY +10) ){
+            if (this.y > (this.decor.y + this.decor.sizeY ) ){
                 this.y -= this.step;
                 this.direction = ageofshimrod.C.DIRECTION_UP  
             } 
