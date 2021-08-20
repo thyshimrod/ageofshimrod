@@ -17,6 +17,8 @@ ageofshimrod.Peon = function (){
     this.animation = 0;
     this.direction = ageofshimrod.C.DIRECTION_DOWN;
     this.ressource = {};
+    this.animationTick = 0;
+    this.collectTick = 0;
 }
 
 ageofshimrod.Peon.prototype ={
@@ -57,8 +59,13 @@ ageofshimrod.Peon.prototype ={
             } 
 
             if (calcDistance(this,this.decor) > 32){
-                this.animation += 1;
-                if (this.animation > 2) this.animation = 0;
+                let d = new Date();
+                let newTick = d.getTime();
+                if (newTick - this.animationTick > ageofshimrod.C.ANIMATION_SPEED){
+                    this.animationTick = newTick;
+                    this.animation += 1;
+                    if (this.animation > 2) this.animation = 0;
+                }
             }else{
                 this.status = ageofshimrod.C.PEON_STATUS_COLLECT;
             }
@@ -77,11 +84,16 @@ ageofshimrod.Peon.prototype ={
                 this.ressource.quantity = 0;
             }else{
                 if (this.decor.ressource.quantity > 0){
-                    this.ressource.quantity += 1;
-                    this.decor.ressource.quantity -= 1;
-                    //TODO ANIMATION of collect
-                    if (this.ressource.quantity >= 10){
-                        this.status = ageofshimrod.C.PEON_STATUS_GOTO_STOCK;
+                    let d = new Date();
+                    let newTick = d.getTime();
+                    if (newTick - this.collectTick > ageofshimrod.C.COLLECT_SPEED){
+                        this.collectTick = newTick;
+                        this.ressource.quantity += 1;
+                        this.decor.ressource.quantity -= 1;
+                        //TODO ANIMATION of collect
+                        if (this.ressource.quantity >= 10){
+                            this.status = ageofshimrod.C.PEON_STATUS_GOTO_STOCK;
+                        }
                     }
                 }else{
                     this.decor = undefined;
@@ -120,8 +132,13 @@ ageofshimrod.Peon.prototype ={
             this.direction = ageofshimrod.C.DIRECTION_UP  
         } 
         if (calcDistance(this,this.affectation) > 32){
-            this.animation += 1;
-            if (this.animation > 2) this.animation = 0;
+            let d = new Date();
+            let newTick = d.getTime();
+            if (newTick - this.animationTick > ageofshimrod.C.ANIMATION_SPEED){
+                this.animationTick = newTick;
+                this.animation += 1;
+                if (this.animation > 2) this.animation = 0;
+            }
         }else{
             for (let i=0;i < ageofshimrod.player.ressources.length;i++){
                 if (ageofshimrod.player.ressources[i].id === this.ressource.id){
@@ -182,14 +199,30 @@ ageofshimrod.Peon.prototype ={
         this.decor = undefined;
     },
 
+    renderCollect : function(){
+        this.ctx.beginPath();
+        this.ctx.fillStyle = ageofshimrod.C.UI_RECT_COLOR;
+        this.ctx.fillRect(this.x+5,this.y-11,30,10);
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = ageofshimrod.C.UI_BORDER_COLOR;
+        this.ctx.rect(this.x+5,this.y-11,30,10);
+        this.ctx.stroke();
+        this.ctx.font = "10px Verdana";
+        this.ctx.fillStyle = ageofshimrod.C.UI_FONT_COLOR;
+        let text = typeof this.ressource.quantity !== "undefined" ? this.ressource.quantity : 0;
+        this.ctx.fillText(text ,
+            this.x + 14, 
+            this.y - 3);
+    },
+
     renderPosition : function(x,y,ctx){
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
         ctx.drawImage(
             this.spriteset,
-            this.animation*32,
-            this.direction*32,
-            32,
-            32,
+            this.animation*this.sizeX,
+            this.direction*this.sizeY,
+            this.sizeX,
+            this.sizeY,
             x,
             y,
             32,
@@ -198,5 +231,9 @@ ageofshimrod.Peon.prototype ={
 
     render : function(){
         this.renderPosition(this.x,this.y,this.ctx);
+        if (typeof this.affectation !== "undefined" && this.affectation.name !== "Maison"){
+            this.renderCollect();
+        }
+        
     },
 }

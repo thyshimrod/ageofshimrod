@@ -18,7 +18,6 @@ ageofshimrod.RecordGame.prototype ={
             "status" : ageofshimrod.C.OBJECTIF_STATUS_INPROGRESS
         };
         this.listOfObjectifs.push(objectif);
-        console.log(this.listOfObjectifs);
     },
 
     checkObjectifs : function(){

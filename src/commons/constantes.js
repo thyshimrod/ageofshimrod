@@ -56,4 +56,7 @@ ageofshimrod.C = Object.freeze({
   OBJECTIF_STATUS_INPROGRESS : 0,
   OBJECTIF_STATUS_DONE : 1,
 
+  ANIMATION_SPEED : 50,
+  COLLECT_SPEED : 100,
+
 });
