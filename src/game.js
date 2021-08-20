@@ -4,13 +4,14 @@ var ageofshimrod = ageofshimrod || {};
 ageofshimrod.GameEngine = function (){
   this.mouseX = 0;
   this.mouseY = 0;
-  this.status = ageofshimrod.C.GAME_STATUS_ENDGAME;
+  this.status = ageofshimrod.C.GAME_STATUS_START;
 }
 
 ageofshimrod.GameEngine.prototype ={
   gameLoop: function (){
     if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_START){
       ageofshimrod.startGame.render();
+      
     }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_ENDGAME){
       ageofshimrod.endGame.showMenu();
       ageofshimrod.endGame.render();
@@ -24,6 +25,7 @@ ageofshimrod.GameEngine.prototype ={
       ageofshimrod.menuPeon.render();
       ageofshimrod.menuBuilding.render();
       ageofshimrod.map.gameLoop();
+      ageofshimrod.recordGame.checkObjectifs();
 
     }
   },
@@ -75,6 +77,7 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.contextualOnBuilding.init();
     ageofshimrod.iconMenu = new ageofshimrod.IconMenu();
     ageofshimrod.iconMenu.init();
+    ageofshimrod.recordGame = new ageofshimrod.RecordGame();
     
     ageofshimrod.menuRessource = new ageofshimrod.MenuRessource();
     ageofshimrod.menuRessource.init();
@@ -85,7 +88,7 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.startGame = new ageofshimrod.StartGame();
     ageofshimrod.startGame.init();
     ageofshimrod.startGame.showMenu();
-    ageofshimrod.recordGame = new ageofshimrod.RecordGame();
+    
     ageofshimrod.endGame = new ageofshimrod.EndGame();
     ageofshimrod.endGame.init();
   },

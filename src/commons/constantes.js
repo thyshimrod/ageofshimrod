@@ -53,4 +53,7 @@ ageofshimrod.C = Object.freeze({
 
   RECORD_RECOLT :0,
 
+  OBJECTIF_STATUS_INPROGRESS : 0,
+  OBJECTIF_STATUS_DONE : 1,
+
 });

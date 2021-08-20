@@ -3,12 +3,57 @@ var ageofshimrod = ageofshimrod || {};
 
 ageofshimrod.RecordGame = function (){
     this.listOfRecords = [];
+    this.listOfObjectifs = [];
 }
 
 ageofshimrod.RecordGame.prototype ={
     init : function(){
         this.listOfRecords = [];
-        this.listOfObjectifs = [];
+    },
+
+    addObjectif : function(typeObjectif, data){
+        let objectif = {
+            "id" : typeObjectif,
+            "data" : data,
+            "status" : ageofshimrod.C.OBJECTIF_STATUS_INPROGRESS
+        };
+        this.listOfObjectifs.push(objectif);
+        console.log(this.listOfObjectifs);
+    },
+
+    checkObjectifs : function(){
+        for (let i = 0 ; i < this.listOfObjectifs.length ; i ++){
+            let objectif = this.listOfObjectifs[i];
+            if (objectif.status === ageofshimrod.C.OBJECTIF_STATUS_INPROGRESS){
+                if (objectif.id === ageofshimrod.C.RECORD_RECOLT){
+                    for (let itRecord = 0 ; itRecord < this.listOfRecords.length ; itRecord++){
+                        let record = this.listOfRecords[itRecord];
+                        if (record.id === objectif.id){
+                            for (let itRessource = 0 ; itRessource < record.ressources.length ; itRessource ++){
+                                if (record.ressources[itRessource].id === objectif.data.idRessource){
+                                    if (record.ressources[itRessource].quantity >= objectif.data.quantity){
+                                        objectif.status = ageofshimrod.C.OBJECTIF_STATUS_DONE;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        let result = true;
+        for (let i = 0 ; i < this.listOfObjectifs.length ; i ++){
+            if (this.listOfObjectifs[i].status === ageofshimrod.C.OBJECTIF_STATUS_INPROGRESS){
+                result = false;
+                break;
+            }
+        }
+        if (result){
+            ageofshimrod.gameEngine.status = ageofshimrod.C.GAME_STATUS_ENDGAME;
+        }
+        console.log(this.listOfObjectifs);
     },
 
     addRecord : function(typeRecord, data){
