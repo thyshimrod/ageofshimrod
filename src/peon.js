@@ -31,12 +31,20 @@ ageofshimrod.Peon.prototype ={
 
     manageGoToRessourceStatus : function(){
         if (typeof this.decor === "undefined" || this.decor.ressource.quantity == 0){
+            let distance = -1;
+            let decor = undefined;
             for(let i=0;i<ageofshimrod.map.decors.length;i++){
                 if (this.affectation.ressource === ageofshimrod.map.decors[i].ressource.id
                     && ageofshimrod.map.decors[i].ressource.quantity > 0){
-                    this.decor = ageofshimrod.map.decors[i];
-                    break;
+                    let dist = calcDistance (this,ageofshimrod.map.decors[i]);
+                    if (distance === -1 || distance > dist){
+                        distance = dist;
+                        decor = ageofshimrod.map.decors[i];
+                    }
                 }
+            }
+            if (typeof decor !== "undefined"){
+                this.decor = decor;
             }
         }else{
             if (this.x < (this.decor.x ) ){
