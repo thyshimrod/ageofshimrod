@@ -172,7 +172,6 @@ ageofshimrod.Peon.prototype ={
                 this.manageGoToStock();
             }
         }
-        this.hp -= 1;
     },
 
     findAHouse : function(){
