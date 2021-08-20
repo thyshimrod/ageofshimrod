@@ -36,19 +36,23 @@ ageofshimrod.Peon.prototype ={
             }
         }else{
             if (this.x < (this.decor.x ) ){
-                this.x += this.step;
+                let step = (this.decor.x-this.x) > this.step ? this.step : (this.decor.x-this.x);
+                this.x += step;
                 this.direction = ageofshimrod.C.DIRECTION_RIGHT;
             } 
             if (this.x > (this.decor.x  ) ){
-                this.x -= this.step;
+                let step = (this.x -this.decor.x) > this.step ? this.step : (this.x -this.decor.x);
+                this.x -= step;
                 this.direction = ageofshimrod.C.DIRECTION_LEFT;
             } 
             if (this.y < (this.decor.y ) ){
-                this.y += this.step;
+                let step = (this.decor.y-this.y) > this.step ? this.step : (this.decor.y-this.y);
+                this.y += step;
                 this.direction = ageofshimrod.C.DIRECTION_DOWN;
             } 
             if (this.y > (this.decor.y  ) ){
-                this.y -= this.step;
+                let step = (this.y -this.decor.y) > this.step ? this.step : (this.y -this.decor.y);
+                this.y -= step;
                 this.direction = ageofshimrod.C.DIRECTION_UP  
             } 
 
@@ -96,19 +100,23 @@ ageofshimrod.Peon.prototype ={
 
     manageGoToStock : function(){
         if (this.x < (this.affectation.x ) ){
-            this.x += this.step;
+            let step = (this.affectation.x-this.x) > this.step ? this.step : (this.affectation.x-this.x);
+            this.x += step;
             this.direction = ageofshimrod.C.DIRECTION_RIGHT;
         } 
         if (this.x > (this.affectation.x) ){
-            this.x -= this.step;
+            let step = (this.x -this.affectation.x) > this.step ? this.step : (this.x -this.affectation.x);
+            this.x -= step;
             this.direction = ageofshimrod.C.DIRECTION_LEFT;
         } 
         if (this.y < (this.affectation.y) ){
-            this.y += this.step;
+            let step = (this.affectation.y-this.y) > this.step ? this.step : (this.affectation.y-this.y);
+            this.y += step;
             this.direction = ageofshimrod.C.DIRECTION_DOWN;
         } 
         if (this.y > (this.affectation.y ) ){
-            this.y -= this.step;
+            let step = (this.y -this.affectation.y) > this.step ? this.step : (this.y -this.affectation.y);
+            this.y -= step;
             this.direction = ageofshimrod.C.DIRECTION_UP  
         } 
         if (calcDistance(this,this.affectation) > 32){
