@@ -39,7 +39,7 @@ ageofshimrod.Decors = [
         "sprite" : { "x" : 32, "y" : 1792},
         "size" : { "x" : 32, "y" : 32},
         "ressources" : {
-            "id" : ageofshimrod.C.RESSOURCE_BOIS,
+            "id" : ageofshimrod.C.RESSOURCE_PIERRE,
             "quantity" : 200
         }
     },
