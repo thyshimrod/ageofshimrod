@@ -8,6 +8,7 @@ ageofshimrod.RecordGame = function (){
 ageofshimrod.RecordGame.prototype ={
     init : function(){
         this.listOfRecords = [];
+        this.listOfObjectifs = [];
     },
 
     addRecord : function(typeRecord, data){

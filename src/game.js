@@ -4,13 +4,16 @@ var ageofshimrod = ageofshimrod || {};
 ageofshimrod.GameEngine = function (){
   this.mouseX = 0;
   this.mouseY = 0;
-  this.status = ageofshimrod.C.GAME_STATUS_START;
+  this.status = ageofshimrod.C.GAME_STATUS_ENDGAME;
 }
 
 ageofshimrod.GameEngine.prototype ={
   gameLoop: function (){
     if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_START){
       ageofshimrod.startGame.render();
+    }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_ENDGAME){
+      ageofshimrod.endGame.showMenu();
+      ageofshimrod.endGame.render();
     }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_INGAME){
       ageofshimrod.canvas.clearCanvas();
       ageofshimrod.map.render();
@@ -33,6 +36,8 @@ ageofshimrod.GameEngine.prototype ={
   clickEvent : function(evt){
     if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_START){
       ageofshimrod.startGame.clickEvent(evt);
+    }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_ENDGAME){
+      ageofshimrod.endGame.clickEvent(evt);
     }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_INGAME){
       let clickOnMenu = ageofshimrod.iconMenu.clickEvent(evt)
       || ageofshimrod.menuRessource.clickEvent(evt)
@@ -81,6 +86,8 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.startGame.init();
     ageofshimrod.startGame.showMenu();
     ageofshimrod.recordGame = new ageofshimrod.RecordGame();
+    ageofshimrod.endGame = new ageofshimrod.EndGame();
+    ageofshimrod.endGame.init();
   },
 }
 
