@@ -12,13 +12,11 @@ ageofshimrod.MenuBuilding = function (){
 }
 
 ageofshimrod.MenuBuilding.prototype ={
-    //TODO Positionner le menu en fonction de la position de la decor
     init : function(){
-        this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
+        this.ctx = ageofshimrod.canvas.canvasAnimation.getContext("2d");
     },
 
     clickEvent : function(evt){
-        //TODO Evaluate if click on window or outside
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){
             if (evt.pageX > this.x && evt.pageX < (this.x + this.width)
                && evt.pageY > this.y && evt.pageY < (this.y + this.height)){
@@ -32,8 +30,6 @@ ageofshimrod.MenuBuilding.prototype ={
             }else{
                 this.toggle();
             }
-            
-
             return ageofshimrod.C.CLICK_ON_WINDOW;
         }
         return ageofshimrod.C.CLICK_OUTSIDE_WINDOW;

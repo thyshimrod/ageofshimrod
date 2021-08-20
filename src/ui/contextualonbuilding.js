@@ -11,15 +11,15 @@ ageofshimrod.ContextualOnBuilding = function (){
     this.status = ageofshimrod.C.UI_STATUS_HIDDEN;
     this.buttons = [
         {
-            "x" : this.x + 100,
-            "y" : this.y + 130,
+            "x" :  100,
+            "y" :  130,
             "size" : 20,
             "name" : "+",
             "status" : ageofshimrod.C.BUTTON_STATUS_OK
         },
         {
-            "x" : this.x + 130,
-            "y" : this.y + 130,
+            "x" : 130,
+            "y" : 130,
             "size" : 20,
             "name" : "-",
             "status" : ageofshimrod.C.BUTTON_STATUS_OK
@@ -29,7 +29,7 @@ ageofshimrod.ContextualOnBuilding = function (){
 
 ageofshimrod.ContextualOnBuilding.prototype ={
     init : function(){
-        this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
+        this.ctx = ageofshimrod.canvas.canvasAnimation.getContext("2d");
     },
 
     getPeonOnThatBuilding : function(){
@@ -48,8 +48,8 @@ ageofshimrod.ContextualOnBuilding.prototype ={
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){
             let btnPressed = false;
             for (let i = 0;i < this.buttons.length;i++){
-                if (evt.pageX > (this.buttons[i].x - this.buttons[i].size/2) && evt.pageX  < (this.buttons[i].x + this.buttons[i].size)
-                &&  evt.pageY > (this.buttons[i].y - this.buttons[i].size/2) && evt.pageY < (this.buttons[i].y + this.buttons[i].size)){
+                if (evt.pageX > (this.buttons[i].x + this.x - this.buttons[i].size/2) && evt.pageX  < (this.buttons[i].x + this.x + this.buttons[i].size)
+                &&  evt.pageY > (this.buttons[i].y + this.y - this.buttons[i].size/2) && evt.pageY < (this.buttons[i].y + this.y + this.buttons[i].size)){
                     if (this.buttons[i].status === ageofshimrod.C.BUTTON_STATUS_OK){
                         if (this.buttons[i].name === "+"){
                             let peonsFree = ageofshimrod.map.findPeonFree();
@@ -72,6 +72,13 @@ ageofshimrod.ContextualOnBuilding.prototype ={
         return ageofshimrod.C.CLICK_OUTSIDE_WINDOW;
     },
 
+    showMenu : function(building){
+        this.building = building;
+        this.x = this.building.x - 50;
+        this.y = this.building.y - 50;
+        this.status = ageofshimrod.C.UI_STATUS_SHOW;
+    },
+
     toggle : function(){
         this.status = this.status === ageofshimrod.C.UI_STATUS_SHOW ? ageofshimrod.C.UI_STATUS_HIDDEN : ageofshimrod.C.UI_STATUS_SHOW;
     },
@@ -81,8 +88,8 @@ ageofshimrod.ContextualOnBuilding.prototype ={
         this.buttons.forEach(function (btn){
             let text = btn.name;
             _this.ctx.fillText(text ,
-                btn.x , 
-                btn.y );
+                btn.x + _this.x, 
+                btn.y + _this.y);
             _this.ctx.beginPath();
             if (btn.name == "+"){
                 let peonsFree = ageofshimrod.map.findPeonFree();
@@ -91,12 +98,10 @@ ageofshimrod.ContextualOnBuilding.prototype ={
                 btn.status = _this.building.peons.length > 0 ? ageofshimrod.C.BUTTON_STATUS_OK : ageofshimrod.C.BUTTON_STATUS_KO;
             }
             _this.ctx.strokeStyle = btn.status === ageofshimrod.C.BUTTON_STATUS_OK ? ageofshimrod.C.UI_BORDER_COLOR : ageofshimrod.C.UI_BORDER_RED;
-            _this.ctx.rect(btn.x -7,btn.y-13, btn.size, btn.size);
+            _this.ctx.rect(btn.x -7 + _this.x ,btn.y-13 + _this.y, btn.size, btn.size);
             _this.ctx.stroke();    
         })
     },
-
-
 
     render : function(){
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){

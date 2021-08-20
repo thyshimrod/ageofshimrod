@@ -14,7 +14,7 @@ ageofshimrod.ContextualOnDecor = function (){
 ageofshimrod.ContextualOnDecor.prototype ={
     //TODO Positionner le menu en fonction de la position de la decor
     init : function(){
-        this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
+        this.ctx = ageofshimrod.canvas.canvasAnimation.getContext("2d");
     },
 
     clickEvent : function(evt){

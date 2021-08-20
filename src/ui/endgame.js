@@ -14,7 +14,7 @@ ageofshimrod.EndGame = function (){
 
 ageofshimrod.EndGame.prototype ={
     init : function(){
-        this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
+        this.ctx = ageofshimrod.canvas.canvasAnimation.getContext("2d");
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
     },
 

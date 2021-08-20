@@ -12,15 +12,15 @@ ageofshimrod.StartGame = function (){
 
 ageofshimrod.StartGame.prototype ={
     init : function(){
-        this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
+        this.ctx = ageofshimrod.canvas.canvasAnimation.getContext("2d");
         let data = {
             "idRessource" : ageofshimrod.C.RESSOURCE_BOIS,
-            "quantity" : 100
+            "quantity" : 500
         };
         ageofshimrod.recordGame.addObjectif(ageofshimrod.C.RECORD_RECOLT,data);
         data = {
             "idRessource" : ageofshimrod.C.RESSOURCE_PIERRE,
-            "quantity" : 100
+            "quantity" : 500
         };
         ageofshimrod.recordGame.addObjectif(ageofshimrod.C.RECORD_RECOLT,data);
     },
@@ -90,7 +90,7 @@ ageofshimrod.StartGame.prototype ={
 
             this.ctx.font = "10px Verdana";
             this.ctx.fillStyle = ageofshimrod.C.UI_FONT_COLOR;
-            text = "100";
+            text = "500";
             this.ctx.fillText(text ,
                 this.x + 35, 
                 this.y + 200);

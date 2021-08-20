@@ -143,7 +143,6 @@ ageofshimrod.Map.prototype ={
             this.buildings.push(this.newBuilding);
             this.newBuilding = undefined;
             this.status = ageofshimrod.C.MAP_STATUS_NORMAL;
-
         }else{
             for (let i=0;i < this.decors.length ; i++){
                 if (this.decors[i].x < evt.pageX && evt.pageX < (this.decors[i].x + this.decors[i].sizeX)
@@ -155,8 +154,7 @@ ageofshimrod.Map.prototype ={
             for (let i=0;i < this.buildings.length ; i++){
                 if (this.buildings[i].x < evt.pageX && evt.pageX < (this.buildings[i].x +64)
                 && this.buildings[i].y < evt.pageY && evt.pageY < (this.buildings[i].y +64)){
-                    ageofshimrod.contextualOnBuilding.building = this.buildings[i];
-                    ageofshimrod.contextualOnBuilding.toggle();
+                    ageofshimrod.contextualOnBuilding.showMenu(this.buildings[i]);
                 }
             }
         }
