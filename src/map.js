@@ -14,6 +14,7 @@ ageofshimrod.Map = function (){
     this.buildings = [];
     this.status = ageofshimrod.C.MAP_STATUS_NORMAL;
     this.newBuilding = undefined;
+    this.animations = [];
 }
 
 ageofshimrod.Map.prototype ={
@@ -30,7 +31,9 @@ ageofshimrod.Map.prototype ={
     init : function(){
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");
-        
+        this.animations = [];
+        this.buildings = [];
+        this.peons = [];
         var objLevel = JSON.parse(localStorage.getItem('levelJs'));
         if (typeof objLevel !== 'undefined' && objLevel !== null){
             this.initFromJs(objLevel);
@@ -92,12 +95,45 @@ ageofshimrod.Map.prototype ={
         
     },
 
-    gameLoop : function(){
+    checkPeons : function(){
+        let peonToRemove = undefined;
         this.peons.forEach(function(peon){
             peon.gameLoop();
+            if (peon.hp <= 0) peonToRemove = peon;
         })
+        if (typeof peonToRemove !== "undefined"){
+            var animation = new ageofshimrod.Animation();
+            animation.init(ageofshimrod.C.ANIMATION_BLOOD, 5000);
+            animation.setXY(peonToRemove.x,peonToRemove.y);
+            animation.layerToDraw = ageofshimrod.canvas.canvasTile.getContext("2d");
+            this.animations.push(animation);
+            const index = this.peons.indexOf(peonToRemove);
+            if (index !== -1){
+                this.peons.splice(index,1);
+            }
+            
+        }
+    },
+
+    checkAnimations : function(){
+        let animationToRemove = undefined;
+        this.animations.forEach(function(elt){ 
+            if (!elt.isActive()) animationToRemove = elt;
+        })
+        if (typeof animationToRemove !== "undefined"){
+            const index = this.animations.indexOf(animationToRemove);
+            if (index !== -1){
+                this.animations.splice(index,1);
+            }
+        }
+    },
+
+    gameLoop : function(){
+        this.checkPeons();
 
         this.checkDecor();
+
+        this.checkAnimations();
     },
 
     clickEvent : function(evt){
@@ -166,6 +202,10 @@ ageofshimrod.Map.prototype ={
 
         this.buildings.forEach(function(building){
             building.render();
+        })
+
+        this.animations.forEach(function(animation){
+            animation.render();
         })
 
         if (this.status === ageofshimrod.C.MAP_STATUS_ADD_BUILDING){
