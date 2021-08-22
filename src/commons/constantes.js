@@ -61,4 +61,7 @@ ageofshimrod.C = Object.freeze({
 
   ANIMATION_BLOOD : 2,
 
+  MONSTER_STATUS_GOTO_TARGET : 0,
+  MONSTER_STATUS_ATTACK : 1,
+
 });

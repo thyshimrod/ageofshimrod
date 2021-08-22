@@ -29,6 +29,10 @@ ageofshimrod.Peon.prototype ={
         if (this.findAHouse()) console.log("Maison trouvee");
     },
 
+    hit : function(damage){
+        this.hp -= damage;
+    },
+
     manageGoToRessourceStatus : function(){
         if (typeof this.decor === "undefined" || this.decor.ressource.quantity == 0){
             let distance = -1;
