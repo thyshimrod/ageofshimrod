@@ -15,6 +15,7 @@ ageofshimrod.Map = function (){
     this.status = ageofshimrod.C.MAP_STATUS_NORMAL;
     this.newBuilding = undefined;
     this.animations = [];
+    this.monsters = [];
 }
 
 ageofshimrod.Map.prototype ={
@@ -60,6 +61,12 @@ ageofshimrod.Map.prototype ={
         peon.init();
         peon.x =350;
         this.peons.push(peon);
+
+        let monster = new ageofshimrod.Monster();
+        monster.init();
+        monster.x = 350;
+        monster.y = 100;
+        this.monsters.push(monster);
     },
 
     addBuilding : function(idBuilding){
@@ -95,23 +102,22 @@ ageofshimrod.Map.prototype ={
         
     },
 
-    checkPeons : function(){
-        let peonToRemove = undefined;
-        this.peons.forEach(function(peon){
-            peon.gameLoop();
-            if (peon.hp <= 0) peonToRemove = peon;
+    checkLife : function(listOfCreatures){
+        let toRemove = undefined;
+        listOfCreatures.forEach(function(creature){
+            creature.gameLoop();
+            if (creature.hp <= 0) toRemove = creature;
         })
-        if (typeof peonToRemove !== "undefined"){
+        if (typeof toRemove !== "undefined"){
             var animation = new ageofshimrod.Animation();
             animation.init(ageofshimrod.C.ANIMATION_BLOOD, 5000);
-            animation.setXY(peonToRemove.x,peonToRemove.y);
+            animation.setXY(toRemove.x,toRemove.y);
             animation.layerToDraw = ageofshimrod.canvas.canvasTile.getContext("2d");
             this.animations.push(animation);
-            const index = this.peons.indexOf(peonToRemove);
+            const index = listOfCreatures.indexOf(toRemove);
             if (index !== -1){
-                this.peons.splice(index,1);
+                listOfCreatures.splice(index,1);
             }
-            
         }
     },
 
@@ -129,7 +135,8 @@ ageofshimrod.Map.prototype ={
     },
 
     gameLoop : function(){
-        this.checkPeons();
+        this.checkLife(this.peons);
+        this.checkLife(this.monsters);
 
         this.checkDecor();
 
@@ -191,6 +198,10 @@ ageofshimrod.Map.prototype ={
 
         this.peons.forEach(function(peon){
             peon.render();
+        })
+
+        this.monsters.forEach(function(monster){
+            monster.render();
         })
 
         this.decors.forEach(function(decor){
