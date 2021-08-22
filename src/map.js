@@ -141,6 +141,10 @@ ageofshimrod.Map.prototype ={
         this.checkDecor();
 
         this.checkAnimations();
+
+        if( this.peons.length === 0){
+            ageofshimrod.gameEngine.changeStatus(ageofshimrod.C.GAME_STATUS_ENDGAME_LOSE);
+        }
     },
 
     clickEvent : function(evt){

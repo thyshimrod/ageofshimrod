@@ -12,7 +12,7 @@ ageofshimrod.GameEngine.prototype ={
     if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_START){
       ageofshimrod.startGame.render();
       
-    }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_ENDGAME){
+    }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_ENDGAME_WIN || ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_ENDGAME_LOSE){
       ageofshimrod.endGame.showMenu();
       ageofshimrod.endGame.render();
     }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_INGAME){
