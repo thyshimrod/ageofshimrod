@@ -51,5 +51,21 @@ ageofshimrod.Buildings = [
             }
         ],
         "ressource" : ageofshimrod.C.RESSOURCE_PIERRE
+    },{
+        "name"    : "Armee",
+        "size":{"x" : 94, "y" : 96},
+        "tileset" : "assets/tileset/pngwing.com.png",
+        "sprite" : { "x" : 1083, "y" : 462},
+        "capacity" : 2,
+        "materiaux" : [
+            {
+                "id" : ageofshimrod.C.RESSOURCE_BOIS,
+                "quantity" : 100
+            },
+            {
+                "id" : ageofshimrod.C.RESSOURCE_PIERRE,
+                "quantity" : 200
+            }
+        ],
     }
 ]

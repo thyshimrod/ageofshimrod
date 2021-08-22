@@ -45,6 +45,11 @@ ageofshimrod.MenuBuilding.prototype ={
 
     render : function(){
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){
+            let heightY = 0;
+            for (let i=0;i<ageofshimrod.Buildings.length;i++){
+                heightY += ageofshimrod.Buildings[i].size.y +10;
+            }
+            this.height = heightY;
             this.ctx.beginPath();
             this.ctx.fillStyle = ageofshimrod.C.UI_RECT_COLOR;
             this.ctx.fillRect(this.x,this.y,this.width,this.height);

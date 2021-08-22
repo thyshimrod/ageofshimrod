@@ -43,7 +43,7 @@ ageofshimrod.GameEngine.prototype ={
   clickEvent : function(evt){
     if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_START){
       ageofshimrod.startGame.clickEvent(evt);
-    }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_ENDGAME){
+    }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_ENDGAME_WIN || ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_ENDGAME_LOSE){
       ageofshimrod.endGame.clickEvent(evt);
     }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_INGAME){
       let clickOnMenu = ageofshimrod.iconMenu.clickEvent(evt)
