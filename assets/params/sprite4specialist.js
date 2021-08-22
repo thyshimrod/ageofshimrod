@@ -13,5 +13,8 @@ ageofshimrod.Sprite4Specialist = [
     ,{
         "name" : "Mineur",
         "sprite" : "./assets/sprite/rose.png"
+    },{
+        "name" : "Armee",
+        "sprite" : "./assets/sprite/soldat.png"
     }
 ]
