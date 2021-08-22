@@ -16,6 +16,7 @@ ageofshimrod.Map = function (){
     this.newBuilding = undefined;
     this.animations = [];
     this.monsters = [];
+    this.eventTick = 0;
 }
 
 ageofshimrod.Map.prototype ={
@@ -62,11 +63,6 @@ ageofshimrod.Map.prototype ={
         peon.x =350;
         this.peons.push(peon);
 
-        let monster = new ageofshimrod.Monster();
-        monster.init();
-        monster.x = 350;
-        monster.y = 100;
-        this.monsters.push(monster);
     },
 
     addBuilding : function(idBuilding){
@@ -134,6 +130,24 @@ ageofshimrod.Map.prototype ={
         }
     },
 
+    checkEvent : function(){
+        let d = new Date();
+        let newTick = d.getTime();
+        if (newTick - this.eventTick > 1000){
+            this.eventTick = newTick;
+            let val = Math.random() * 100;
+            if (val < 10){
+                if (this.monsters.length === 0){
+                    let monster = new ageofshimrod.Monster();
+                    monster.init();
+                    monster.x = window.innerHeight;
+                    monster.y = window.innerWidth;
+                    this.monsters.push(monster);
+                }
+            }
+        }
+    },
+
     gameLoop : function(){
         this.checkLife(this.peons);
         this.checkLife(this.monsters);
@@ -141,6 +155,8 @@ ageofshimrod.Map.prototype ={
         this.checkDecor();
 
         this.checkAnimations();
+
+        this.checkEvent();
 
         if( this.peons.length === 0){
             ageofshimrod.gameEngine.changeStatus(ageofshimrod.C.GAME_STATUS_ENDGAME_LOSE);
