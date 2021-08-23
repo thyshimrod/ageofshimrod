@@ -5,8 +5,8 @@ var ageofshimrod = ageofshimrod || {};
 ageofshimrod.Decors = [
     {
         "name"    : "Rocher",
-        "tileset" : "assets/tileset/tileset1.png",
-        "sprite" : { "x" : 32, "y" : 1854},
+        "tileset" : "assets/tileset/rocgros.png",
+        "sprite" : { "x" : 0, "y" : 0},
         "size" : { "x" : 32, "y" : 32},
         "ressources": { 
             "id" : ageofshimrod.C.RESSOURCE_PIERRE,
@@ -15,8 +15,8 @@ ageofshimrod.Decors = [
     },
     {
         "name"    : "Arbre",
-        "tileset" : "assets/tileset/tileset1.png",
-        "sprite" : { "x" : 160, "y" : 1024},
+        "tileset" : "assets/tileset/arbre1.png",
+        "sprite" : { "x" : 0, "y" : 0},
         "size" : { "x" : 32, "y" : 64},
         "ressources" : {
             "id" : ageofshimrod.C.RESSOURCE_BOIS,
@@ -25,8 +25,8 @@ ageofshimrod.Decors = [
     },
     {
         "name"    : "Arbre mort",
-        "tileset" : "assets/tileset/tileset1.png",
-        "sprite" : { "x" : 0, "y" : 1120},
+        "tileset" : "assets/tileset/arbremort.png",
+        "sprite" : { "x" : 0, "y" : 0},
         "size" : { "x" : 32, "y" : 64},
         "ressources" : {
             "id" : ageofshimrod.C.RESSOURCE_BOIS,
@@ -35,8 +35,8 @@ ageofshimrod.Decors = [
     },
     {
         "name"    : "Petit rocher",
-        "tileset" : "assets/tileset/tileset1.png",
-        "sprite" : { "x" : 32, "y" : 1792},
+        "tileset" : "assets/tileset/rocpetit.png",
+        "sprite" : { "x" : 0, "y" : 0},
         "size" : { "x" : 32, "y" : 32},
         "ressources" : {
             "id" : ageofshimrod.C.RESSOURCE_PIERRE,
@@ -45,8 +45,8 @@ ageofshimrod.Decors = [
     },
     {
         "name"    : "Salades",
-        "tileset" : "assets/tileset/tileset1.png",
-        "sprite" : { "x" : 224, "y" : 1088},
+        "tileset" : "assets/tileset/salade.png",
+        "sprite" : { "x" : 0, "y" : 0},
         "size" : { "x" : 32, "y" : 32},
         "ressources" : {
             "id" : ageofshimrod.C.RESSOURCE_FOOD,
