@@ -7,14 +7,14 @@ ageofshimrod.Sprite4Specialist = [
         "name" : "None",
         "sprite" : "./assets/sprite/adam.png"
     },{
-        "name" : "Bucheron",
+        "name" : ageofshimrod.C.BUILDING_LUMBER,
         "sprite" : "./assets/sprite/fille.png"
     },
     ,{
-        "name" : "Mineur",
+        "name" : ageofshimrod.C.BUILDING_MINEUR,
         "sprite" : "./assets/sprite/rose.png"
     },{
-        "name" : "Armee",
+        "name" : ageofshimrod.C.BUILDING_ARMY,
         "sprite" : "./assets/sprite/soldat.png"
     }
 ]

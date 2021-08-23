@@ -130,7 +130,7 @@ ageofshimrod.ContextualOnBuilding.prototype ={
                 this.x + 10, 
                 this.y + 130);
 
-            if (this.building.name !== "Maison"){
+            if (this.building.typeBuilding !== ageofshimrod.C.BUILDING_HOUSE){
                 this.drawButtons();
             }
             if (typeof this.building.ressource !== "undefined"){

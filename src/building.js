@@ -15,6 +15,7 @@ ageofshimrod.Building = function (){
     this.capacity = 0;
     this.peons = [];
     this.materiauxNeeded = [];
+    this.typeBuilding = undefined;
 
 }
 
@@ -26,6 +27,7 @@ ageofshimrod.Building.prototype ={
         this.sizeY = src.size.y;
         this.tx = src.sprite.x;
         this.ty = src.sprite.y;
+        this.typeBuilding = src.typeBuilding;
         this.tileset = src.tileset;
         this.spriteset = ageofshimrod.tileset.get(this.tileset);
         this.ctx = ageofshimrod.canvas.canvasTile.getContext("2d");

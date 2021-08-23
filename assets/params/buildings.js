@@ -5,6 +5,7 @@ var ageofshimrod = ageofshimrod || {};
 ageofshimrod.Buildings = [
     {
         "name"    : "Maison",
+        "typeBuilding" : ageofshimrod.C.BUILDING_HOUSE,
         "size":{"x" : 88, "y" : 106},
         "tileset" : "assets/tileset/pngwing.com.png",
         "sprite" : { "x" : 32, "y" : 440},
@@ -18,6 +19,7 @@ ageofshimrod.Buildings = [
     },
     {
         "name"    : "Bucheron",
+        "typeBuilding" : ageofshimrod.C.BUILDING_LUMBER,
         "size":{"x" : 92, "y" : 106},
         "tileset" : "assets/tileset/pngwing.com.png",
         "sprite" : { "x" : 1704, "y" : 602},
@@ -36,6 +38,7 @@ ageofshimrod.Buildings = [
     },
     {
         "name"    : "Mineur",
+        "typeBuilding" : ageofshimrod.C.BUILDING_MINEUR,
         "size":{"x" : 92, "y" : 106},
         "tileset" : "assets/tileset/pngwing.com.png",
         "sprite" : { "x" : 942, "y" : 438},
@@ -53,6 +56,7 @@ ageofshimrod.Buildings = [
         "ressource" : ageofshimrod.C.RESSOURCE_PIERRE
     },{
         "name"    : "Armee",
+        "typeBuilding" : ageofshimrod.C.BUILDING_ARMY,
         "size":{"x" : 94, "y" : 96},
         "tileset" : "assets/tileset/pngwing.com.png",
         "sprite" : { "x" : 1083, "y" : 462},

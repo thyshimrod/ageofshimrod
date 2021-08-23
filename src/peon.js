@@ -133,7 +133,7 @@ ageofshimrod.Peon.prototype ={
     manageGoToAffectation : function(){
         this.goToTarget(this.affectation);
         if (calcDistance(this,this.affectation) < 32){
-            if (this.affectation.name === "Armee"){
+            if (this.affectation.typeBuilding === ageofshimrod.C.BUILDING_ARMY){
                 this.status = ageofshimrod.C.PEON_STATUS_GOTO_ENNEMY;
             }else{
                 for (let i=0;i < ageofshimrod.player.ressources.length;i++){
@@ -194,9 +194,10 @@ ageofshimrod.Peon.prototype ={
         }else{
             if (this.status === ageofshimrod.C.PEON_STATUS_WAIT){
                 if (typeof this.affectation !== "undefined"){
-                    if (this.affectation.name === "Mineur" || this.affectation.name === "Bucheron"){
+                    if (this.affectation.typeBuilding === ageofshimrod.C.BUILDING_LUMBER 
+                        || this.affectation.typeBuilding === ageofshimrod.C.BUILDING_MINEUR){
                         this.status = ageofshimrod.C.PEON_STATUS_GOTO_RESSOURCE;
-                    }else if (this.affectation.name === "Armee"){
+                    }else if (this.affectation.typeBuilding === ageofshimrod.C.BUILDING_ARMY){
                         this.status = ageofshimrod.C.PEON_STATUS_GOTO_STOCK;
                     }
                 }
@@ -217,7 +218,7 @@ ageofshimrod.Peon.prototype ={
     findAHouse : function(){
         for (let i = 0 ; i < ageofshimrod.map.buildings.length ; i++){
             let building = ageofshimrod.map.buildings[i];
-            if (building.name === "Maison"){
+            if (building.typeBuilding === ageofshimrod.C.BUILDING_HOUSE){
                 if (building.peons.length < building.capacity){
                     building.peons.push(this);
                     this.house = building;
@@ -230,7 +231,7 @@ ageofshimrod.Peon.prototype ={
 
     changeAffectation : function(building){
         this.affectation = building;
-        let toFind = typeof building === "undefined" ? "None" : building.name;
+        let toFind = typeof building === "undefined" ? "None" : building.typeBuilding;
         var _this = this;
         ageofshimrod.Sprite4Specialist.forEach(function(sprite){
             if (sprite.name === toFind){
@@ -288,7 +289,7 @@ ageofshimrod.Peon.prototype ={
 
     render : function(){
         this.renderPosition(this.x,this.y,this.ctx);
-        if (typeof this.affectation !== "undefined" && this.affectation.name !== "Maison"){
+        if (typeof this.affectation !== "undefined" && this.affectation.typeBuilding !== ageofshimrod.C.BUILDING_HOUSE){
            this.renderCollect();
         }
         this.renderJaugeHp();
