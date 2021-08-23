@@ -94,6 +94,10 @@ ageofshimrod.Monster.prototype ={
         }
     },
 
+    hit : function(damage){
+        this.hp -= damage;
+    },
+
     renderJaugeHp : function(){
         var prctLife = Math.round((this.hp/this.hpMax)*30);
         if (prctLife < 0) prctLife = 0;

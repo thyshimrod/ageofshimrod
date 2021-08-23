@@ -54,6 +54,11 @@ ageofshimrod.Map.prototype ={
         house.x = 200;
         house.y = 200;
         this.buildings.push(house);
+        house = new ageofshimrod.Building();
+        house.init(ageofshimrod.C.BUILDING_ARMY);
+        house.x = 400;
+        house.y = 400;
+        this.buildings.push(house);
         let peon = new ageofshimrod.Peon();
         peon.init();
         peon.x =300;
@@ -136,12 +141,12 @@ ageofshimrod.Map.prototype ={
         if (newTick - this.eventTick > 1000){
             this.eventTick = newTick;
             let val = Math.random() * 100;
-            if (val < 1){
+            if (val < 10){
                 if (this.monsters.length === 0){
                     let monster = new ageofshimrod.Monster();
                     monster.init();
-                    monster.x = window.innerHeight;
-                    monster.y = window.innerWidth;
+                    monster.y = window.innerHeight;
+                    monster.x = window.innerWidth;
                     this.monsters.push(monster);
                 }
             }
