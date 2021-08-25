@@ -141,7 +141,7 @@ ageofshimrod.Map.prototype ={
         if (newTick - this.eventTick > 1000){
             this.eventTick = newTick;
             let val = Math.random() * 100;
-            if (val < 10){
+            if (val < 0){
                 if (this.monsters.length === 0){
                     let monster = new ageofshimrod.Monster();
                     monster.init();
@@ -170,21 +170,21 @@ ageofshimrod.Map.prototype ={
 
     clickEvent : function(evt){
         if (this.status === ageofshimrod.C.MAP_STATUS_ADD_BUILDING){
-            this.newBuilding.x = ageofshimrod.gameEngine.mouseX;
-            this.newBuilding.y = ageofshimrod.gameEngine.mouseY;
+            this.newBuilding.x = ageofshimrod.gameEngine.mouseX -ageofshimrod.gameEngine.decalageX;
+            this.newBuilding.y = ageofshimrod.gameEngine.mouseY -ageofshimrod.gameEngine.decalageY;
             this.buildings.push(this.newBuilding);
             this.newBuilding = undefined;
             this.status = ageofshimrod.C.MAP_STATUS_NORMAL;
         }else{
             for (let i=0;i < this.decors.length ; i++){
-                if (this.decors[i].x < evt.pageX && evt.pageX < (this.decors[i].x + this.decors[i].sizeX)
-                && this.decors[i].y < evt.pageY && evt.pageY < (this.decors[i].y + this.decors[i].sizeY)){
+                if ((this.decors[i].x+ageofshimrod.gameEngine.decalageX) < evt.pageX && evt.pageX < (this.decors[i].x+ageofshimrod.gameEngine.decalageX + this.decors[i].sizeX)
+                && (this.decors[i].y+ageofshimrod.gameEngine.decalageY) < evt.pageY && evt.pageY < (this.decors[i].y+ageofshimrod.gameEngine.decalageY + this.decors[i].sizeY)){
                     ageofshimrod.contextualOnDecor.showMenu(this.decors[i]);
                 }
             }
             for (let i=0;i < this.buildings.length ; i++){
-                if (this.buildings[i].x < evt.pageX && evt.pageX < (this.buildings[i].x +64)
-                && this.buildings[i].y < evt.pageY && evt.pageY < (this.buildings[i].y +64)){
+                if ((this.buildings[i].x+ageofshimrod.gameEngine.decalageX) < evt.pageX && evt.pageX < (this.buildings[i].x +64 +ageofshimrod.gameEngine.decalageX)
+                && (this.buildings[i].y+ageofshimrod.gameEngine.decalageY) < evt.pageY && evt.pageY < (this.buildings[i].y +64 +ageofshimrod.gameEngine.decalageY)){
                     ageofshimrod.contextualOnBuilding.showMenu(this.buildings[i]);
                 }
             }
@@ -206,18 +206,21 @@ ageofshimrod.Map.prototype ={
     render : function(){
         for (let i = 0 ; i < this.sizeX ; i++){
             for (let j = 0 ; j < this.sizeY ; j++){
-                if (i*32 < window.innerWidth && j*32 < window.innerHeight){
+                if (i*32 < (window.innerWidth - ageofshimrod.gameEngine.decalageX)
+                && i*32 >= (-ageofshimrod.gameEngine.decalageX-32) 
+                && j*32 < (window.innerHeight - ageofshimrod.gameEngine.decalageY)
+                && j*32 >= (-ageofshimrod.gameEngine.decalageY-32)){
                     this.ctx.drawImage(
                         this.spriteset,
                         this.tileGrassX,
                         this.tileGrassY,
                         32,
                         32,
-                        i*32,
-                        j*32,
+                        i*32 + ageofshimrod.gameEngine.decalageX,
+                        j*32 + ageofshimrod.gameEngine.decalageY,
                         32,
                         32);
-                }
+                    }
             }
         }
 

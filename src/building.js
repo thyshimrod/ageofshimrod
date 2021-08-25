@@ -64,6 +64,11 @@ ageofshimrod.Building.prototype ={
     },
 
     render : function(){
-        this.renderPosition(this.x,this.y,this.ctx);
+        if (this.x < (window.innerWidth - ageofshimrod.gameEngine.decalageX)
+        && this.x >= (-ageofshimrod.gameEngine.decalageX) 
+        && this.y < (window.innerHeight - ageofshimrod.gameEngine.decalageY)
+        && this.y >= (-ageofshimrod.gameEngine.decalageY)){
+            this.renderPosition(this.x+ageofshimrod.gameEngine.decalageX,this.y+ageofshimrod.gameEngine.decalageY,this.ctx);
+        }
     },
 }

@@ -245,17 +245,17 @@ ageofshimrod.Peon.prototype ={
     renderCollect : function(){
         this.ctx.beginPath();
         this.ctx.fillStyle = ageofshimrod.C.UI_RECT_COLOR;
-        this.ctx.fillRect(this.x+5,this.y-15,30,10);
+        this.ctx.fillRect(this.x+5+ageofshimrod.gameEngine.decalageX,this.y-15+ageofshimrod.gameEngine.decalageY,30,10);
         this.ctx.beginPath();
         this.ctx.strokeStyle = ageofshimrod.C.UI_BORDER_COLOR;
-        this.ctx.rect(this.x+5,this.y-15,30,10);
+        this.ctx.rect(this.x+5+ageofshimrod.gameEngine.decalageX,this.y-15+ageofshimrod.gameEngine.decalageY,30,10);
         this.ctx.stroke();
         this.ctx.font = "10px Verdana";
         this.ctx.fillStyle = ageofshimrod.C.UI_FONT_COLOR;
         let text = typeof this.ressource.quantity !== "undefined" ? this.ressource.quantity : 0;
         this.ctx.fillText(text ,
-            this.x + 14, 
-            this.y - 7);
+            this.x + 14 +ageofshimrod.gameEngine.decalageX, 
+            this.y - 7+ageofshimrod.gameEngine.decalageY);
     },
 
     renderJaugeHp : function(){
@@ -263,14 +263,14 @@ ageofshimrod.Peon.prototype ={
         if (prctLife < 0) prctLife = 0;
         this.ctx.beginPath();
         this.ctx.fillStyle = ageofshimrod.C.UI_RECT_COLOR;
-        this.ctx.fillRect(this.x+5,this.y-5,30,3);
+        this.ctx.fillRect(this.x+5 +ageofshimrod.gameEngine.decalageX ,this.y-5 +ageofshimrod.gameEngine.decalageY,30,3);
         this.ctx.beginPath();
         this.ctx.strokeStyle = ageofshimrod.C.UI_BORDER_COLOR;
-        this.ctx.rect(this.x+5,this.y-5,30,3);
+        this.ctx.rect(this.x+5 +ageofshimrod.gameEngine.decalageX,this.y-5 +ageofshimrod.gameEngine.decalageY,30,3);
         this.ctx.stroke();
         this.ctx.beginPath();
         this.ctx.fillStyle = ageofshimrod.C.UI_BORDER_RED;
-        this.ctx.fillRect(this.x+5,this.y-5,prctLife,3);
+        this.ctx.fillRect(this.x+5 +ageofshimrod.gameEngine.decalageX ,this.y-5 +ageofshimrod.gameEngine.decalageY,prctLife,3);
     },
 
     renderPosition : function(x,y,ctx){
@@ -288,10 +288,15 @@ ageofshimrod.Peon.prototype ={
     },
 
     render : function(){
-        this.renderPosition(this.x,this.y,this.ctx);
-        if (typeof this.affectation !== "undefined" && this.affectation.typeBuilding !== ageofshimrod.C.BUILDING_HOUSE){
-           this.renderCollect();
+        if (this.x < (window.innerWidth - ageofshimrod.gameEngine.decalageX)
+        && this.x >= (-ageofshimrod.gameEngine.decalageX) 
+        && this.y < (window.innerHeight - ageofshimrod.gameEngine.decalageY)
+        && this.y >= (-ageofshimrod.gameEngine.decalageY)){
+            this.renderPosition(this.x +ageofshimrod.gameEngine.decalageX,this.y +ageofshimrod.gameEngine.decalageY,this.ctx);
+            if (typeof this.affectation !== "undefined" && this.affectation.typeBuilding !== ageofshimrod.C.BUILDING_HOUSE){
+            this.renderCollect();
+            }
+            this.renderJaugeHp();
         }
-        this.renderJaugeHp();
     },
 }

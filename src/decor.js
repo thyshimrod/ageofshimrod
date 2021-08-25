@@ -49,7 +49,7 @@ ageofshimrod.Decor.prototype ={
         return decorJs;
       },
 
-    renderPosition : function(x,y,ctx){
+    renderPosition : function(x,y,ctx){     
         ctx.drawImage(
             this.spriteset,
             this.tx,
@@ -63,6 +63,11 @@ ageofshimrod.Decor.prototype ={
     },
 
     render : function(){
-        this.renderPosition(this.x,this.y,this.ctx);
+        if (this.x < (window.innerWidth - ageofshimrod.gameEngine.decalageX)
+        && this.x >= (-ageofshimrod.gameEngine.decalageX) 
+        && this.y < (window.innerHeight - ageofshimrod.gameEngine.decalageY)
+        && this.y >= (-ageofshimrod.gameEngine.decalageY)){
+            this.renderPosition(this.x+ageofshimrod.gameEngine.decalageX,this.y+ageofshimrod.gameEngine.decalageY,this.ctx);
+        }
     },
 }

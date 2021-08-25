@@ -103,14 +103,14 @@ ageofshimrod.Monster.prototype ={
         if (prctLife < 0) prctLife = 0;
         this.ctx.beginPath();
         this.ctx.fillStyle = ageofshimrod.C.UI_RECT_COLOR;
-        this.ctx.fillRect(this.x+5,this.y-5,30,3);
+        this.ctx.fillRect(this.x+5+ageofshimrod.gameEngine.decalageX,this.y-5+ageofshimrod.gameEngine.decalageY,30,3);
         this.ctx.beginPath();
         this.ctx.strokeStyle = ageofshimrod.C.UI_BORDER_COLOR;
-        this.ctx.rect(this.x+5,this.y-5,30,3);
+        this.ctx.rect(this.x+5+ageofshimrod.gameEngine.decalageX,this.y-5+ageofshimrod.gameEngine.decalageY,30,3);
         this.ctx.stroke();
         this.ctx.beginPath();
         this.ctx.fillStyle = ageofshimrod.C.UI_BORDER_RED;
-        this.ctx.fillRect(this.x+5,this.y-5,prctLife,3);
+        this.ctx.fillRect(this.x+5+ageofshimrod.gameEngine.decalageX,this.y-5+ageofshimrod.gameEngine.decalageY,prctLife,3);
     },
 
     renderPosition : function(x,y,ctx){
@@ -128,7 +128,12 @@ ageofshimrod.Monster.prototype ={
     },
 
     render : function(){
-        this.renderPosition(this.x,this.y,this.ctx);
-        this.renderJaugeHp();
-    },
+        if (this.x < (window.innerWidth - ageofshimrod.gameEngine.decalageX)
+        && this.x > (-ageofshimrod.gameEngine.decalageX) 
+        && this.y < (window.innerHeight - ageofshimrod.gameEngine.decalageY)
+        && this.y > (-ageofshimrod.gameEngine.decalageY)){
+            this.renderPosition(this.x+ageofshimrod.gameEngine.decalageX,this.y+ageofshimrod.gameEngine.decalageY,this.ctx);
+            this.renderJaugeHp();
+        }
+     },
 }

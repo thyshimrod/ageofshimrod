@@ -5,6 +5,9 @@ ageofshimrod.GameEngine = function (){
   this.mouseX = 0;
   this.mouseY = 0;
   this.status = ageofshimrod.C.GAME_STATUS_START;
+  this.decalageX = 0;
+  this.decalageY = 0;
+  this.stepDecalage = 3;
 }
 
 ageofshimrod.GameEngine.prototype ={
@@ -26,7 +29,20 @@ ageofshimrod.GameEngine.prototype ={
       ageofshimrod.menuBuilding.render();
       ageofshimrod.map.gameLoop();
       ageofshimrod.recordGame.checkObjectifs();
+      ageofshimrod.gameEngine.checkDecalage();
+    }
+  },
 
+  checkDecalage : function(){
+    if (this.mouseX < 20){
+      ageofshimrod.gameEngine.decalageX += ageofshimrod.gameEngine.stepDecalage;
+    }else if (this.mouseX > (window.innerWidth - 20)){
+      ageofshimrod.gameEngine.decalageX -= ageofshimrod.gameEngine.stepDecalage;
+    }
+    if (this.mouseY < 20){
+      ageofshimrod.gameEngine.decalageY += ageofshimrod.gameEngine.stepDecalage;
+    }else if (this.mouseY > (window.innerHeight - 20)){
+      ageofshimrod.gameEngine.decalageY -= ageofshimrod.gameEngine.stepDecalage;
     }
   },
 
@@ -38,6 +54,8 @@ ageofshimrod.GameEngine.prototype ={
   mouseMove : function(evt){
     ageofshimrod.gameEngine.mouseX = evt.pageX;
     ageofshimrod.gameEngine.mouseY = evt.pageY;
+
+    
   },
 
   clickEvent : function(evt){

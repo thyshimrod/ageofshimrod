@@ -74,8 +74,8 @@ ageofshimrod.ContextualOnBuilding.prototype ={
 
     showMenu : function(building){
         this.building = building;
-        this.x = this.building.x - 50;
-        this.y = this.building.y - 50;
+        this.x = this.building.x - 50 +ageofshimrod.gameEngine.decalageX;
+        this.y = this.building.y - 50 +ageofshimrod.gameEngine.decalageY;
         this.status = ageofshimrod.C.UI_STATUS_SHOW;
     },
 
