@@ -293,8 +293,10 @@ ageofshimrod.Peon.prototype ={
         && this.y < (window.innerHeight - ageofshimrod.gameEngine.decalageY)
         && this.y >= (-ageofshimrod.gameEngine.decalageY)){
             this.renderPosition(this.x +ageofshimrod.gameEngine.decalageX,this.y +ageofshimrod.gameEngine.decalageY,this.ctx);
-            if (typeof this.affectation !== "undefined" && this.affectation.typeBuilding !== ageofshimrod.C.BUILDING_HOUSE){
-            this.renderCollect();
+            if (typeof this.affectation !== "undefined" &&
+             (this.affectation.typeBuilding === ageofshimrod.C.BUILDING_MINEUR || this.affectation.typeBuilding === ageofshimrod.C.BUILDING_LUMBER)
+            ){
+                this.renderCollect();
             }
             this.renderJaugeHp();
         }
