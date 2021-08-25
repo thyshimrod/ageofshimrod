@@ -66,8 +66,8 @@ ageofshimrod.LevelEditor.prototype ={
             if (typeof ageofshimrod.levelEditor.decor !== "undefined"){
                 let decor = new ageofshimrod.Decor();
                 decor.init(ageofshimrod.levelEditor.decor.id);
-                decor.x = Math.round(ageofshimrod.gameEditor.mouseX/32)*32;
-                decor.y = Math.round(ageofshimrod.gameEditor.mouseY/32)*32;
+                decor.x = Math.round((ageofshimrod.gameEditor.mouseX - ageofshimrod.gameEditor.decalageX)/32)*32;
+                decor.y = Math.round((ageofshimrod.gameEditor.mouseY - ageofshimrod.gameEditor.decalageY)/32)*32;
                 let found = false;
                 for (let i=0;i<ageofshimrod.levelEditor.decors.length;i++){
                     if (ageofshimrod.levelEditor.decors[i].x === decor.x && ageofshimrod.levelEditor.decors[i].y === decor.y){
@@ -78,8 +78,8 @@ ageofshimrod.LevelEditor.prototype ={
                 if (!found) ageofshimrod.levelEditor.decors.push(decor);
             }
         }else if (ageofshimrod.levelEditor.status === ageofshimrod.C.EDITOR_STATUS_REMOVE_DECOR){
-            let x = Math.round(ageofshimrod.gameEditor.mouseX/32)*32;
-            let y = Math.round(ageofshimrod.gameEditor.mouseY/32)*32;
+            let x = Math.round((ageofshimrod.gameEditor.mouseX- ageofshimrod.gameEditor.decalageX)/32)*32;
+            let y = Math.round((ageofshimrod.gameEditor.mouseY- ageofshimrod.gameEditor.decalageY)/32)*32;
             let indexDecor = -1;
             for (let i=0;i<ageofshimrod.levelEditor.decors.length;i++){
                 if (ageofshimrod.levelEditor.decors[i].x === x && ageofshimrod.levelEditor.decors[i].y === y){
@@ -96,15 +96,18 @@ ageofshimrod.LevelEditor.prototype ={
     render : function(){
         for (let i = 0 ; i < this.sizeX ; i++){
             for (let j = 0 ; j < this.sizeY ; j++){
-                if (i*32 < window.innerWidth && j*32 < window.innerHeight){
+                if (i*32 < (window.innerWidth - ageofshimrod.gameEditor.decalageX)
+                && i*32 >= (-ageofshimrod.gameEditor.decalageX-32) 
+                && j*32 < (window.innerHeight - ageofshimrod.gameEditor.decalageY)
+                && j*32 >= (-ageofshimrod.gameEditor.decalageY-32)){
                     this.ctx.drawImage(
                         this.spriteset,
                         this.tileGrassX,
                         this.tileGrassY,
                         32,
                         32,
-                        i*32,
-                        j*32,
+                        i*32 + ageofshimrod.gameEditor.decalageX,
+                        j*32 + ageofshimrod.gameEditor.decalageY,
                         32,
                         32);
                 }
@@ -113,7 +116,7 @@ ageofshimrod.LevelEditor.prototype ={
 
         var _this = this;
         this.decors.forEach(function(decor){
-            decor.render();
+            decor.render(ageofshimrod.gameEditor);
         })
 
         if (typeof this.decor !== "undefined"){

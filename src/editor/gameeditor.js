@@ -4,6 +4,9 @@ var ageofshimrod = ageofshimrod || {};
 ageofshimrod.GameEditor = function (){
     this.mouseX = 0;
     this.mouseY = 0;
+    this.decalageX = 0;
+    this.decalageY = 0;
+    this.stepDecalage = 3;
 }
 
 ageofshimrod.GameEditor.prototype ={
@@ -12,6 +15,7 @@ ageofshimrod.GameEditor.prototype ={
       ageofshimrod.levelEditor.render();
       ageofshimrod.menuDecor.render();
       ageofshimrod.editorIconMenu.render();
+      ageofshimrod.gameEditor.checkDecalage();
     },
 
     init : function(){
@@ -26,8 +30,22 @@ ageofshimrod.GameEditor.prototype ={
         ageofshimrod.editorIconMenu = new ageofshimrod.EditorIconMenu();
         ageofshimrod.editorIconMenu.init();
         
+        
         var ctx = ageofshimrod.canvas.canvasMouse.addEventListener('mousemove', ageofshimrod.gameEditor.mouseMoveEvent);
         var ctx = ageofshimrod.canvas.canvasMouse.addEventListener('click', ageofshimrod.gameEditor.clickEvent);
+    },
+
+    checkDecalage : function(){
+      if (this.mouseX < 20){
+        ageofshimrod.gameEditor.decalageX += ageofshimrod.gameEditor.stepDecalage;
+      }else if (this.mouseX > (window.innerWidth - 20)){
+        ageofshimrod.gameEditor.decalageX -= ageofshimrod.gameEditor.stepDecalage;
+      }
+      if (this.mouseY < 20){
+        ageofshimrod.gameEditor.decalageY += ageofshimrod.gameEditor.stepDecalage;
+      }else if (this.mouseY > (window.innerHeight - 20)){
+        ageofshimrod.gameEditor.decalageY -= ageofshimrod.gameEditor.stepDecalage;
+      }
     },
 
     clickEvent : function(evt){

@@ -62,12 +62,12 @@ ageofshimrod.Decor.prototype ={
             this.sizeY);
     },
 
-    render : function(){
-        if (this.x < (window.innerWidth - ageofshimrod.gameEngine.decalageX)
-        && this.x >= (-ageofshimrod.gameEngine.decalageX) 
-        && this.y < (window.innerHeight - ageofshimrod.gameEngine.decalageY)
-        && this.y >= (-ageofshimrod.gameEngine.decalageY)){
-            this.renderPosition(this.x+ageofshimrod.gameEngine.decalageX,this.y+ageofshimrod.gameEngine.decalageY,this.ctx);
+    render : function(mainEngine){
+        if (this.x < (window.innerWidth - mainEngine.decalageX)
+        && this.x >= (-mainEngine.decalageX) 
+        && this.y < (window.innerHeight - mainEngine.decalageY)
+        && this.y >= (-mainEngine.decalageY)){
+            this.renderPosition(this.x+mainEngine.decalageX,this.y+mainEngine.decalageY,this.ctx);
         }
     },
 }

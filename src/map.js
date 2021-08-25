@@ -233,7 +233,7 @@ ageofshimrod.Map.prototype ={
         })
 
         this.decors.forEach(function(decor){
-            decor.render();
+            decor.render(ageofshimrod.gameEngine);
         })
 
         this.buildings.forEach(function(building){
