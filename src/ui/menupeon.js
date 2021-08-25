@@ -49,12 +49,59 @@ ageofshimrod.MenuPeon.prototype ={
                 this.x + 40, 
                 this.y + 10);
 
-            let peon = new ageofshimrod.Peon();
+           /* let peon = new ageofshimrod.Peon();
             peon.renderPosition(this.x + 5, this.y +25,this.ctx);
             text = ageofshimrod.map.peons.length;
             this.ctx.fillText(text ,
                 this.x + 50, 
                 this.y + 40);
+                */
+            let peons = [];
+            ageofshimrod.map.peons.forEach(function (peon){
+                let affectation = typeof peon.affectation === "undefined" ? "None" : peon.affectation.typeBuilding;
+                if (peons.length == 0){
+                    let peonJs = { "id" : affectation, "quantity" : 1};
+                    peons.push(peonJs);
+                }else{
+                    let found = false;
+                    for (let i = 0 ; i < peons.length ; i++){
+                        if (peons[i].id === affectation){
+                            peons[i].quantity += 1;
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found){
+                        let peonJs = { "id" : affectation, "quantity" : 1};
+                        peons.push(peonJs);
+                    }
+                }
+
+            })
+
+            for (let i = 0 ; i < peons.length ; i++){
+                let sprite = "";
+                ageofshimrod.Sprite4Specialist.forEach(function(it){
+                    if (it.name === peons[i].id){
+                        sprite = it.sprite;
+                    }
+                })
+                this.spriteset = ageofshimrod.tileset.get(sprite);
+                this.ctx.drawImage(
+                    this.spriteset,
+                    0,
+                    0,
+                    32,
+                    32,
+                    this.x + 40,
+                    this.y + 30 + i*32 +10,
+                    32,
+                    32);
+                text = peons[i].quantity;
+                this.ctx.fillText(text ,
+                    this.x + 100, 
+                    this.y + 50 + i*32 +10);
+            }
         }
     },
 }
