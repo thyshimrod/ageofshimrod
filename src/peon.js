@@ -23,6 +23,7 @@ ageofshimrod.Peon = function (){
     this.hpMax = 10;
     this.attackSpeed = ageofshimrod.C.PEON_ATTACK_SPEED;
     this.attackTick = 0;
+    this.healingTick = 0;
 }
 
 ageofshimrod.Peon.prototype ={
@@ -173,6 +174,13 @@ ageofshimrod.Peon.prototype ={
                 }  
             }
             if (typeof this.target === "undefined"){
+                let d = new Date();
+                let newTick = d.getTime();
+                if (newTick - this.healingTick > ageofshimrod.C.PEON_HEALING_SPEED){
+                    this.hp = this.hp < this.hpMax ? this.hp +1 : this.hp;
+                    this.healingTick = newTick;
+                }
+
                 this.status = ageofshimrod.C.PEON_STATUS_GOTO_STOCK;
             }
         }else{

@@ -47,6 +47,7 @@ ageofshimrod.C = Object.freeze({
   PEON_STATUS_ATTACK_ENNEMY : 6,
 
   PEON_ATTACK_SPEED : 200,
+  PEON_HEALING_SPEED : 1000,
 
   CHARACTER_STEP : 3,
 
