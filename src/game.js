@@ -12,6 +12,7 @@ ageofshimrod.GameEngine = function (){
 
 ageofshimrod.GameEngine.prototype ={
   gameLoop: function (){
+    ageofshimrod.canvas.clearCanvas();
     if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_START){
       ageofshimrod.startGame.render();
       
@@ -19,7 +20,6 @@ ageofshimrod.GameEngine.prototype ={
       ageofshimrod.endGame.showMenu();
       ageofshimrod.endGame.render();
     }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_INGAME){
-      ageofshimrod.canvas.clearCanvas();
       ageofshimrod.map.render();
       ageofshimrod.contextualOnDecor.render();
       ageofshimrod.contextualOnBuilding.render();

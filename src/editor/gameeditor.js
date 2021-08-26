@@ -12,6 +12,7 @@ ageofshimrod.GameEditor = function (){
 ageofshimrod.GameEditor.prototype ={
 
     gameLoop: function (){
+      ageofshimrod.canvas.clearCanvas();
       ageofshimrod.levelEditor.render();
       ageofshimrod.menuDecor.render();
       ageofshimrod.editorIconMenu.render();
