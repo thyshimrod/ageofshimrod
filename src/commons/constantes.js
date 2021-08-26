@@ -7,6 +7,10 @@ ageofshimrod.C = Object.freeze({
   UI_RECT_COLOR : "#E6E6FA",
   UI_FONT_COLOR : "#191970",
   UI_BORDER_RED : "#f81a2d",
+  COLOR_CONTEXTUAL : "#2F4f4f",
+  COLOR_TEXT : "#deebf8",
+  COLOR_TEXT_CHOOSEN : "#5EB6DD",
+  COLOR_TURQUOISE : "#bdffff",
 
   UI_STATUS_SHOW : 0,
   UI_STATUS_HIDDEN : 1,
@@ -26,6 +30,10 @@ ageofshimrod.C = Object.freeze({
   BUILDING_LUMBER : 1,
   BUILDING_MINEUR : 2,
   BUILDING_ARMY : 3,
+
+  MESSAGE_ALERT_INFO : "#deebf8",
+  MESSAGE_ALERT_WARNING : "#FE9A2E",
+  MESSAGE_ALERT_HIGH : "#FA5858",
 
   BUTTON_STATUS_KO : 0,
   BUTTON_STATUS_OK : 1,

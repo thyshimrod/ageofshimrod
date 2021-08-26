@@ -30,6 +30,7 @@ ageofshimrod.GameEngine.prototype ={
       ageofshimrod.map.gameLoop();
       ageofshimrod.recordGame.checkObjectifs();
       ageofshimrod.gameEngine.checkDecalage();
+      ageofshimrod.console.render();
     }
   },
 
@@ -65,6 +66,7 @@ ageofshimrod.GameEngine.prototype ={
       ageofshimrod.endGame.clickEvent(evt);
     }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_INGAME){
       let clickOnMenu = ageofshimrod.iconMenu.clickEvent(evt)
+      ||  ageofshimrod.console.clickEvent(evt)
       || ageofshimrod.menuRessource.clickEvent(evt)
       || ageofshimrod.menuPeon.clickEvent(evt)
       || ageofshimrod.menuBuilding.clickEvent(evt)
@@ -111,6 +113,9 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.startGame = new ageofshimrod.StartGame();
     ageofshimrod.startGame.init();
     ageofshimrod.startGame.showMenu();
+    ageofshimrod.console = new ageofshimrod.Console();
+    ageofshimrod.console.init();
+    ageofshimrod.console.addMessage("Game is Starting");
     
     ageofshimrod.endGame = new ageofshimrod.EndGame();
     ageofshimrod.endGame.init();
