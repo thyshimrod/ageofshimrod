@@ -28,11 +28,23 @@ ageofshimrod.Peon = function (){
 ageofshimrod.Peon.prototype ={
     init : function(){
         this.ctx = ageofshimrod.canvas.canvasCreature.getContext("2d");
-        if (this.findAHouse()) console.log("Maison trouvee");
+        if (this.findAHouse()) ageofshimrod.console.addMessage("Un peon est ne. Il a trouve une habitation!")
     },
 
     hit : function(damage){
         this.hp -= damage;
+        if (this.hp <= 0){
+            ageofshimrod.console.addMessage("Un peon est mort.");
+            if (typeof this.affectation !== "undefined"){
+                this.affectation.removePeon(this);
+                this.affectation = undefined;
+            }
+            if (typeof this.house !== "undefined"){
+                this.house.removePeon(this);
+                this.house = "undefined";
+            }
+            
+        }
     },
 
     goToTarget : function(target){

@@ -143,13 +143,14 @@ ageofshimrod.Map.prototype ={
         if (newTick - this.eventTick > 1000){
             this.eventTick = newTick;
             let val = Math.random() * 100;
-            if (val < 0){
+            if (val < 2){
                 if (this.monsters.length === 0){
                     let monster = new ageofshimrod.Monster();
                     monster.init();
                     monster.y = window.innerHeight;
                     monster.x = window.innerWidth;
                     this.monsters.push(monster);
+                    ageofshimrod.console.addMessage("Un loup arrive");
                 }
             }
         }
