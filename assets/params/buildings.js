@@ -72,4 +72,22 @@ ageofshimrod.Buildings = [
             }
         ],
     }
+    ,{
+        "name"    : "Ferme",
+        "typeBuilding" : ageofshimrod.C.BUILDING_FARM,
+        "size" : {"x" : 94, "y" : 96},
+        "tileset" : "assets/tileset/pngwing.com.png",
+        "sprite" : { "x" : 1267, "y" : 610},
+        "capacity" : 2,
+        "materiaux" : [
+            {
+                "id" : ageofshimrod.C.RESSOURCE_BOIS,
+                "quantity" : 100
+            },
+            {
+                "id" : ageofshimrod.C.RESSOURCE_PIERRE,
+                "quantity" : 100
+            }
+        ],
+    }
 ]

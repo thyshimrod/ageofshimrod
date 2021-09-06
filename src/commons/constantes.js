@@ -30,6 +30,7 @@ ageofshimrod.C = Object.freeze({
   BUILDING_LUMBER : 1,
   BUILDING_MINEUR : 2,
   BUILDING_ARMY : 3,
+  BUILDING_FARM : 4,
 
   MESSAGE_ALERT_INFO : "#deebf8",
   MESSAGE_ALERT_WARNING : "#FE9A2E",
