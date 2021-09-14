@@ -15,4 +15,10 @@ ageofshimrod.Ressources = {
         "tileset" : "assets/tileset/ressourcebois.png",
         "sprite" : { "x" : 0, "y" : 0},
     },
+    3 : {
+        "name"    : "Nourriture",
+        "size":{"x" : 32, "y" : 32},
+        "tileset" : "assets/tileset/salade.png",
+        "sprite" : { "x" : 0, "y" : 0},
+    },
 }

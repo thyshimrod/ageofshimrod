@@ -17,6 +17,11 @@ ageofshimrod.Player.prototype ={
             "quantity" : 100
         };
         this.ressources.push(boisInit);
+        let foodInit = {
+            "id" : ageofshimrod.C.RESSOURCE_FOOD,
+            "quantity" : 500
+        };
+        this.ressources.push(foodInit);
 
     },
 }

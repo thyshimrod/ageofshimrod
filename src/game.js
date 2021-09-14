@@ -8,6 +8,7 @@ ageofshimrod.GameEngine = function (){
   this.decalageX = 0;
   this.decalageY = 0;
   this.stepDecalage = 3;
+  this.tickBirth = 0;
 }
 
 ageofshimrod.GameEngine.prototype ={
@@ -20,6 +21,7 @@ ageofshimrod.GameEngine.prototype ={
       ageofshimrod.endGame.showMenu();
       ageofshimrod.endGame.render();
     }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_INGAME){
+      ageofshimrod.gameEngine.checkNaissance();
       ageofshimrod.map.render();
       ageofshimrod.contextualOnDecor.render();
       ageofshimrod.contextualOnBuilding.render();
@@ -31,6 +33,38 @@ ageofshimrod.GameEngine.prototype ={
       ageofshimrod.recordGame.checkObjectifs();
       ageofshimrod.gameEngine.checkDecalage();
       ageofshimrod.console.render();
+    }
+  },
+
+  checkNaissance : function(){
+    let d = new Date();
+    let newTick = d.getTime();
+    if ((newTick - ageofshimrod.gameEngine.tickBirth) > 2000){
+      let enoughFood = false;
+      for (let i=0 ; i < ageofshimrod.player.ressources.length; i++){
+        if (ageofshimrod.player.ressources[i].id === ageofshimrod.C.RESSOURCE_FOOD
+          && ageofshimrod.player.ressources[i].quantity > 100){
+            enoughFood = true;
+            break;
+          }
+      }
+      if (enoughFood){
+        ageofshimrod.gameEngine.tickBirth = newTick;
+        let peon = new ageofshimrod.Peon();
+        peon.init();
+        peon.x =32;
+        peon.y = 150;
+        if (typeof peon.house !== "undefined"){
+          ageofshimrod.map.peons.push(peon);
+          for (let i=0 ; i < ageofshimrod.player.ressources.length; i++){
+            if (ageofshimrod.player.ressources[i].id === ageofshimrod.C.RESSOURCE_FOOD){
+                ageofshimrod.player.ressources[i].quantity -= 100;
+                break;
+              }
+          }
+        }
+      }
+      
     }
   },
 
