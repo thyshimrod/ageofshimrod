@@ -54,8 +54,8 @@ ageofshimrod.Animation.prototype = {
        this.ty,
        this.size,
        this.size,
-       this.x,
-       this.y,
+       this.x +ageofshimrod.gameEngine.decalageX,
+       this.y +ageofshimrod.gameEngine.decalageY,
        32,
        32);
 
