@@ -24,6 +24,7 @@ ageofshimrod.Peon = function (){
     this.attackSpeed = ageofshimrod.C.PEON_ATTACK_SPEED;
     this.attackTick = 0;
     this.healingTick = 0;
+    this.behavior = undefined;
 }
 
 ageofshimrod.Peon.prototype ={
@@ -48,39 +49,6 @@ ageofshimrod.Peon.prototype ={
         }
     },
 
-    goToTarget : function(target){
-        if (this.x < (target.x ) ){
-            let step = (target.x-this.x) > this.step ? this.step : (target.x-this.x);
-            this.x += step;
-            this.direction = ageofshimrod.C.DIRECTION_RIGHT;
-        } 
-        if (this.x > (target.x  ) ){
-            let step = (this.x -target.x) > this.step ? this.step : (this.x - target.x);
-            this.x -= step;
-            this.direction = ageofshimrod.C.DIRECTION_LEFT;
-        } 
-        if (this.y < (target.y ) ){
-            let step = (target.y-this.y) > this.step ? this.step : (target.y-this.y);
-            this.y += step;
-            this.direction = ageofshimrod.C.DIRECTION_DOWN;
-        } 
-        if (this.y > (target.y  ) ){
-            let step = (this.y -target.y) > this.step ? this.step : (this.y - target.y);
-            this.y -= step;
-            this.direction = ageofshimrod.C.DIRECTION_UP  
-        } 
-
-        if (calcDistance(this,target) > 32){
-            let d = new Date();
-            let newTick = d.getTime();
-            if (newTick - this.animationTick > ageofshimrod.C.ANIMATION_SPEED){
-                this.animationTick = newTick;
-                this.animation += 1;
-                if (this.animation > 2) this.animation = 0;
-            }
-        }
-    },
-
     manageGoToRessourceStatus : function(){
         if (typeof this.target === "undefined" || this.target.ressource.quantity == 0){
             let distance = -1;
@@ -99,7 +67,7 @@ ageofshimrod.Peon.prototype ={
                 this.target = decor;
             }
         }else{
-            this.goToTarget(this.target);
+            goToTarget(this,this.target);
             if (calcDistance(this,this.target) < 32){
                 this.status = ageofshimrod.C.PEON_STATUS_COLLECT;
             }
@@ -144,7 +112,7 @@ ageofshimrod.Peon.prototype ={
     },
 
     manageGoToAffectation : function(){
-        this.goToTarget(this.affectation);
+        goToTarget(this,this.affectation);
         if (calcDistance(this,this.affectation) < 32){
             if (this.affectation.typeBuilding === ageofshimrod.C.BUILDING_ARMY){
                 this.status = ageofshimrod.C.PEON_STATUS_GOTO_ENNEMY;
@@ -184,7 +152,7 @@ ageofshimrod.Peon.prototype ={
                 this.status = ageofshimrod.C.PEON_STATUS_GOTO_STOCK;
             }
         }else{
-            this.goToTarget(this.target);
+            goToTarget(this,this.target);
             if (calcDistance(this,this.target)< 32){
                 this.status = ageofshimrod.C.PEON_STATUS_ATTACK_ENNEMY;
             }
@@ -211,6 +179,8 @@ ageofshimrod.Peon.prototype ={
     gameLoop : function(){
         if (typeof this.affectation === "undefined"){
             this.status = ageofshimrod.C.PEON_STATUS_WAIT;
+
+            //TODO : going back to Home
         }else{
             if (this.status === ageofshimrod.C.PEON_STATUS_WAIT){
                 if (typeof this.affectation !== "undefined"){
@@ -252,6 +222,9 @@ ageofshimrod.Peon.prototype ={
     changeAffectation : function(building){
         this.affectation = building;
         let toFind = typeof building === "undefined" ? "None" : building.typeBuilding;
+        if ( building.typeBuilding === ageofshimrod.C.BUILDING_ARMY){
+            this.behavior = new ageofshimrod.BehaviorSoldier();
+        }
         var _this = this;
         ageofshimrod.Sprite4Specialist.forEach(function(sprite){
             if (sprite.name === toFind){
