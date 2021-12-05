@@ -143,7 +143,7 @@ ageofshimrod.Map.prototype ={
         if (newTick - this.eventTick > 1000){
             this.eventTick = newTick;
             let val = Math.random() * 100;
-            if (val < 2){
+            if (val < 50){
                 if (this.monsters.length === 0){
                     let monster = new ageofshimrod.Monster();
                     monster.init();

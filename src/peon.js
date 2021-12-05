@@ -159,23 +159,6 @@ ageofshimrod.Peon.prototype ={
         }
     },
 
-    manageAttackStatus : function(){
-        if (calcDistance(this,this.target) > 32){
-            this.status = ageofshimrod.C.PEON_STATUS_GOTO_ENNEMY;
-        }else{
-            let d = new Date();
-            let newTick = d.getTime();
-            if (newTick - this.attackTick > this.attackSpeed){
-                this.attackTick = newTick;
-                this.target.hit(1);
-            }
-            if (this.target.hp <= 0){
-                this.target = undefined;
-                this.status = ageofshimrod.C.PEON_STATUS_GOTO_ENNEMY;
-            }
-        }
-    },
-
     gameLoop : function(){
         if (typeof this.affectation === "undefined"){
             this.status = ageofshimrod.C.PEON_STATUS_WAIT;
