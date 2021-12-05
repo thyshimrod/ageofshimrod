@@ -131,35 +131,17 @@ ageofshimrod.Peon.prototype ={
         }
     },
 
-    manageStatusGoToEnnemy : function(){
-        if (typeof this.target === "undefined"){
-            let distance = -1;
-            for(let i=0;i<ageofshimrod.map.monsters.length;i++){
-                let dist = calcDistance (this,ageofshimrod.map.monsters[i]);
-                if (distance === -1 || distance > dist){
-                    distance = dist;
-                    this.target = ageofshimrod.map.monsters[i];
-                }  
-            }
-            if (typeof this.target === "undefined"){
-                let d = new Date();
-                let newTick = d.getTime();
-                if (newTick - this.healingTick > ageofshimrod.C.PEON_HEALING_SPEED){
-                    this.hp = this.hp < this.hpMax ? this.hp +1 : this.hp;
-                    this.healingTick = newTick;
-                }
-
-                this.status = ageofshimrod.C.PEON_STATUS_GOTO_AFFECTATION;
-            }
-        }else{
-            goToTarget(this,this.target);
-            if (calcDistance(this,this.target)< 32){
-                this.status = ageofshimrod.C.PEON_STATUS_ATTACK_ENNEMY;
-            }
+    handleHealing : function(){
+        let d = new Date();
+        let newTick = d.getTime();
+        if (newTick - this.healingTick > ageofshimrod.C.PEON_HEALING_SPEED){
+            this.hp = this.hp < this.hpMax ? this.hp +1 : this.hp;
+            this.healingTick = newTick;
         }
     },
 
     gameLoop : function(){
+        this.handleHealing();
         if (typeof this.affectation === "undefined"){
             this.status = ageofshimrod.C.PEON_STATUS_WAIT;
 
