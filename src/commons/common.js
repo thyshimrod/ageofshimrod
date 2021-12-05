@@ -41,6 +41,9 @@ function calcDistance (A,B){
             creature.animation += 1;
             if (creature.animation > 2) creature.animation = 0;
         }
+    }else{
+      return ageofshimrod.C.PEON_STATUS_WAIT;
     }
+    return creature.status;
 }
   

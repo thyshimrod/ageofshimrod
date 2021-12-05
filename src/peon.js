@@ -93,18 +93,18 @@ ageofshimrod.Peon.prototype ={
                         this.ressource.quantity += 1;
                         this.target.ressource.quantity -= 1;
                         if (this.ressource.quantity >= 10){
-                            this.status = ageofshimrod.C.PEON_STATUS_GOTO_STOCK;
+                            this.status = ageofshimrod.C.PEON_STATUS_GOTO_AFFECTATION;
                         }
                     }
                 }else{
                     this.target = undefined;
-                    this.status = ageofshimrod.C.PEON_STATUS_GOTO_STOCK;
+                    this.status = ageofshimrod.C.PEON_STATUS_GOTO_AFFECTATION;
                 }
             }
         }else{
             this.target = undefined;
             if (this.ressource.quantity > 0){
-                this.status = ageofshimrod.C.PEON_STATUS_GOTO_STOCK;
+                this.status = ageofshimrod.C.PEON_STATUS_GOTO_AFFECTATION;
             }else{
                 this.status = ageofshimrod.C.PEON_STATUS_GOTO_RESSOURCE;
             }
@@ -149,7 +149,7 @@ ageofshimrod.Peon.prototype ={
                     this.healingTick = newTick;
                 }
 
-                this.status = ageofshimrod.C.PEON_STATUS_GOTO_STOCK;
+                this.status = ageofshimrod.C.PEON_STATUS_GOTO_AFFECTATION;
             }
         }else{
             goToTarget(this,this.target);
@@ -182,26 +182,29 @@ ageofshimrod.Peon.prototype ={
 
             //TODO : going back to Home
         }else{
-            if (this.status === ageofshimrod.C.PEON_STATUS_WAIT){
+            if (typeof this.behavior !== "undefined"){
+                this.behavior.loop();
+            }
+           /* if (this.status === ageofshimrod.C.PEON_STATUS_WAIT){
                 if (typeof this.affectation !== "undefined"){
                     if (this.affectation.typeBuilding === ageofshimrod.C.BUILDING_LUMBER 
                         || this.affectation.typeBuilding === ageofshimrod.C.BUILDING_MINEUR){
                         this.status = ageofshimrod.C.PEON_STATUS_GOTO_RESSOURCE;
                     }else if (this.affectation.typeBuilding === ageofshimrod.C.BUILDING_ARMY){
-                        this.status = ageofshimrod.C.PEON_STATUS_GOTO_STOCK;
+                        this.status = ageofshimrod.C.PEON_STATUS_GOTO_AFFECTATION;
                     }
                 }
             }else if (this.status === ageofshimrod.C.PEON_STATUS_GOTO_RESSOURCE){
                 this.manageGoToRessourceStatus();
             }else if (this.status === ageofshimrod.C.PEON_STATUS_COLLECT){
                 this.manageCollectStatus();
-            }else if (this.status === ageofshimrod.C.PEON_STATUS_GOTO_STOCK){
+            }else if (this.status === ageofshimrod.C.PEON_STATUS_GOTO_AFFECTATION){
                 this.manageGoToAffectation();
             }else if (this.status === ageofshimrod.C.PEON_STATUS_GOTO_ENNEMY){
                 this.manageStatusGoToEnnemy();
             }else if (this.status === ageofshimrod.C.PEON_STATUS_ATTACK_ENNEMY){
                 this.manageAttackStatus();
-            }
+            }*/
         }
     },
 
@@ -224,6 +227,12 @@ ageofshimrod.Peon.prototype ={
         let toFind = typeof building === "undefined" ? "None" : building.typeBuilding;
         if ( building.typeBuilding === ageofshimrod.C.BUILDING_ARMY){
             this.behavior = new ageofshimrod.BehaviorSoldier();
+            
+        }
+        if (typeof this.behavior !== "undefined"){
+            this.behavior.character = this;
+            this.behavior.init();
+            
         }
         var _this = this;
         ageofshimrod.Sprite4Specialist.forEach(function(sprite){
@@ -231,7 +240,6 @@ ageofshimrod.Peon.prototype ={
                 _this.tileset = sprite.sprite;
             }
         })
-        this.status = ageofshimrod.C.PEON_STATUS_WAIT;
         this.target = undefined;
     },
 
