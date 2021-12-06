@@ -16,5 +16,8 @@ ageofshimrod.Sprite4Specialist = [
     },{
         "name" : ageofshimrod.C.BUILDING_ARMY,
         "sprite" : "./assets/sprite/soldat.png"
+    },{
+        "name" : ageofshimrod.C.BUILDING_FARM,
+        "sprite" : "./assets/sprite/vert.png"
     }
 ]

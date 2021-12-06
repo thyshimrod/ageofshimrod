@@ -62,32 +62,11 @@ ageofshimrod.Peon.prototype ={
         this.handleHealing();
         if (typeof this.affectation === "undefined"){
             this.status = ageofshimrod.C.PEON_STATUS_WAIT;
-
             //TODO : going back to Home
         }else{
             if (typeof this.behavior !== "undefined"){
                 this.behavior.loop();
             }
-           /* if (this.status === ageofshimrod.C.PEON_STATUS_WAIT){
-                if (typeof this.affectation !== "undefined"){
-                    if (this.affectation.typeBuilding === ageofshimrod.C.BUILDING_LUMBER 
-                        || this.affectation.typeBuilding === ageofshimrod.C.BUILDING_MINEUR){
-                        this.status = ageofshimrod.C.PEON_STATUS_GOTO_RESSOURCE;
-                    }else if (this.affectation.typeBuilding === ageofshimrod.C.BUILDING_ARMY){
-                        this.status = ageofshimrod.C.PEON_STATUS_GOTO_AFFECTATION;
-                    }
-                }
-            }else if (this.status === ageofshimrod.C.PEON_STATUS_GOTO_RESSOURCE){
-                this.manageGoToRessourceStatus();
-            }else if (this.status === ageofshimrod.C.PEON_STATUS_COLLECT){
-                this.manageCollectStatus();
-            }else if (this.status === ageofshimrod.C.PEON_STATUS_GOTO_AFFECTATION){
-                this.manageGoToAffectation();
-            }else if (this.status === ageofshimrod.C.PEON_STATUS_GOTO_ENNEMY){
-                this.manageStatusGoToEnnemy();
-            }else if (this.status === ageofshimrod.C.PEON_STATUS_ATTACK_ENNEMY){
-                this.manageAttackStatus();
-            }*/
         }
     },
 
@@ -113,11 +92,12 @@ ageofshimrod.Peon.prototype ={
         }else if ( building.typeBuilding === ageofshimrod.C.BUILDING_LUMBER 
                 || building.typeBuilding === ageofshimrod.C.BUILDING_MINEUR){
             this.behavior = new ageofshimrod.BehaviorLumber();
+        }else if ( building.typeBuilding === ageofshimrod.C.BUILDING_FARM ){
+            this.behavior = new ageofshimrod.BehaviorFarmer();
         }
         if (typeof this.behavior !== "undefined"){
             this.behavior.character = this;
             this.behavior.init();
-            
         }
         var _this = this;
         ageofshimrod.Sprite4Specialist.forEach(function(sprite){
