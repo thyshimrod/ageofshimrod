@@ -110,7 +110,8 @@ ageofshimrod.Peon.prototype ={
         let toFind = typeof building === "undefined" ? "None" : building.typeBuilding;
         if ( building.typeBuilding === ageofshimrod.C.BUILDING_ARMY){
             this.behavior = new ageofshimrod.BehaviorSoldier();
-        }else if ( building.typeBuilding === ageofshimrod.C.BUILDING_LUMBER){
+        }else if ( building.typeBuilding === ageofshimrod.C.BUILDING_LUMBER 
+                || building.typeBuilding === ageofshimrod.C.BUILDING_MINEUR){
             this.behavior = new ageofshimrod.BehaviorLumber();
         }
         if (typeof this.behavior !== "undefined"){
