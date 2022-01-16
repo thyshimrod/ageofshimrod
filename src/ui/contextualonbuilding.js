@@ -52,9 +52,12 @@ ageofshimrod.ContextualOnBuilding.prototype ={
                 &&  evt.pageY > (this.buttons[i].y + this.y - this.buttons[i].size/2) && evt.pageY < (this.buttons[i].y + this.y + this.buttons[i].size)){
                     if (this.buttons[i].status === ageofshimrod.C.BUTTON_STATUS_OK){
                         if (this.buttons[i].name === "+"){
-                            let peonsFree = ageofshimrod.map.findPeonFree();
-                            peonsFree[0].changeAffectation(this.building);
-                            this.building.peons.push(peonsFree[0]);
+                            let peonOnThisBuilding = this.getPeonOnThatBuilding();
+                            if (peonOnThisBuilding.length < this.building.capacity){
+                                let peonsFree = ageofshimrod.map.findPeonFree();
+                                peonsFree[0].changeAffectation(this.building);
+                                this.building.peons.push(peonsFree[0]);
+                            }
                         }else{
                             let peonsInBuilding = this.getPeonOnThatBuilding();
                             if (peonsInBuilding.length > 0){
@@ -92,8 +95,8 @@ ageofshimrod.ContextualOnBuilding.prototype ={
                 btn.y + _this.y);
             _this.ctx.beginPath();
             if (btn.name == "+"){
-                let peonsFree = ageofshimrod.map.findPeonFree();
-                btn.status = peonsFree.length > 0 ? ageofshimrod.C.BUTTON_STATUS_OK : ageofshimrod.C.BUTTON_STATUS_KO;
+                let peonsOnBuilding = _this.getPeonOnThatBuilding();
+                btn.status = peonsOnBuilding.length < _this.building.capacity ? ageofshimrod.C.BUTTON_STATUS_OK : ageofshimrod.C.BUTTON_STATUS_KO;
             }else{
                 btn.status = _this.building.peons.length > 0 ? ageofshimrod.C.BUTTON_STATUS_OK : ageofshimrod.C.BUTTON_STATUS_KO;
             }
