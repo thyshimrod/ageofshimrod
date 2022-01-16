@@ -58,6 +58,21 @@ ageofshimrod.MainMenu.prototype ={
         this.status = this.status === ageofshimrod.C.UI_STATUS_SHOW ? ageofshimrod.C.UI_STATUS_HIDDEN : ageofshimrod.C.UI_STATUS_SHOW;
     },
 
+    renderButtons : function(){
+        this.ctx.beginPath();
+        this.ctx.fillStyle = ageofshimrod.C.UI_RECT_COLOR;
+        this.ctx.fillRect(this.btns[0].x,this.btns[0].y,this.btns[0].sizeX,this.btns[0].sizeY);
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = ageofshimrod.C.UI_BORDER_COLOR;
+        this.ctx.rect(this.btns[0].x,this.btns[0].y,this.btns[0].sizeX,this.btns[0].sizeY);
+        this.ctx.stroke();
+        this.ctx.font = "30px Verdana";
+        this.ctx.fillStyle = ageofshimrod.C.UI_FONT_COLOR;
+        let text = "Jouer";
+        this.ctx.fillText(text ,
+            this.btns[0].x + 30 ,this.btns[0].y + 30);
+    },
+
     render : function(){
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){
             this.ctx.beginPath();
@@ -74,20 +89,7 @@ ageofshimrod.MainMenu.prototype ={
                 this.x + 80, 
                 this.y + 30);
                 
-
-            this.ctx.beginPath();
-            this.ctx.fillStyle = ageofshimrod.C.UI_RECT_COLOR;
-            this.ctx.fillRect(this.btns[0].x,this.btns[0].y,this.btns[0].sizeX,this.btns[0].sizeY);
-            this.ctx.beginPath();
-            this.ctx.strokeStyle = ageofshimrod.C.UI_BORDER_COLOR;
-            this.ctx.rect(this.btns[0].x,this.btns[0].y,this.btns[0].sizeX,this.btns[0].sizeY);
-            this.ctx.stroke();
-            this.ctx.font = "30px Verdana";
-            this.ctx.fillStyle = ageofshimrod.C.UI_FONT_COLOR;
-            text = "Jouer";
-            this.ctx.fillText(text ,
-                this.btns[0].x + 30 ,this.btns[0].y + 30);
-            
+            this.renderButtons();
         }
     },
 }

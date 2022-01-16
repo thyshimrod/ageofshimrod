@@ -87,13 +87,15 @@ ageofshimrod.Peon.prototype ={
     changeAffectation : function(building){
         this.affectation = building;
         let toFind = typeof building === "undefined" ? "None" : building.typeBuilding;
-        if ( building.typeBuilding === ageofshimrod.C.BUILDING_ARMY){
-            this.behavior = new ageofshimrod.BehaviorSoldier();
-        }else if ( building.typeBuilding === ageofshimrod.C.BUILDING_LUMBER 
-                || building.typeBuilding === ageofshimrod.C.BUILDING_MINEUR){
-            this.behavior = new ageofshimrod.BehaviorLumber();
-        }else if ( building.typeBuilding === ageofshimrod.C.BUILDING_FARM ){
-            this.behavior = new ageofshimrod.BehaviorFarmer();
+        if (typeof building !== "undefined"){
+            if ( building.typeBuilding === ageofshimrod.C.BUILDING_ARMY){
+                this.behavior = new ageofshimrod.BehaviorSoldier();
+            }else if ( building.typeBuilding === ageofshimrod.C.BUILDING_LUMBER 
+                    || building.typeBuilding === ageofshimrod.C.BUILDING_MINEUR){
+                this.behavior = new ageofshimrod.BehaviorLumber();
+            }else if ( building.typeBuilding === ageofshimrod.C.BUILDING_FARM ){
+                this.behavior = new ageofshimrod.BehaviorFarmer();
+            }
         }
         if (typeof this.behavior !== "undefined"){
             this.behavior.character = this;
