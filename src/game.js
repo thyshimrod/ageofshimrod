@@ -15,8 +15,9 @@ ageofshimrod.GameEngine.prototype ={
   gameLoop: function (){
     ageofshimrod.canvas.clearCanvas();
     if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_START){
-      ageofshimrod.startGame.render();
-      
+      ageofshimrod.startGame.render(); 
+    }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_MAINMENU){
+      ageofshimrod.mainMenu.render();
     }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_ENDGAME_WIN || ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_ENDGAME_LOSE){
       ageofshimrod.endGame.showMenu();
       ageofshimrod.endGame.render();
@@ -84,6 +85,9 @@ ageofshimrod.GameEngine.prototype ={
   changeStatus : function(newStatus){
     ageofshimrod.canvas.clearCanvas();
     this.status = newStatus;
+    if (this.status === ageofshimrod.C.GAME_STATUS_START){
+      ageofshimrod.startGame.showMenu();
+    }
   },
 
   mouseMove : function(evt){
@@ -98,6 +102,8 @@ ageofshimrod.GameEngine.prototype ={
       ageofshimrod.startGame.clickEvent(evt);
     }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_ENDGAME_WIN || ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_ENDGAME_LOSE){
       ageofshimrod.endGame.clickEvent(evt);
+    }else if (ageofshimrod.gameEngine.status ===ageofshimrod.C.GAME_STATUS_MAINMENU){
+      ageofshimrod.mainMenu.clickEvent(evt);
     }else if (ageofshimrod.gameEngine.status === ageofshimrod.C.GAME_STATUS_INGAME){
       let clickOnMenu = ageofshimrod.iconMenu.clickEvent(evt)
       ||  ageofshimrod.console.clickEvent(evt)
@@ -146,13 +152,18 @@ ageofshimrod.GameEngine.prototype ={
     ageofshimrod.menuBuilding.init();
     ageofshimrod.startGame = new ageofshimrod.StartGame();
     ageofshimrod.startGame.init();
-    ageofshimrod.startGame.showMenu();
+    //ageofshimrod.startGame.showMenu();
+    ageofshimrod.mainMenu = new ageofshimrod.MainMenu();;
+    ageofshimrod.mainMenu.init();
+    ageofshimrod.mainMenu.showMenu();
     ageofshimrod.console = new ageofshimrod.Console();
     ageofshimrod.console.init();
     ageofshimrod.console.addMessage("Game is Starting");
     
     ageofshimrod.endGame = new ageofshimrod.EndGame();
     ageofshimrod.endGame.init();
+
+    ageofshimrod.gameEngine.status = ageofshimrod.C.GAME_STATUS_MAINMENU;
   },
 }
 
