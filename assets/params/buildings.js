@@ -90,4 +90,22 @@ ageofshimrod.Buildings = [
             }
         ],
     }
+    ,{
+        "name"    : "Tour de defense",
+        "typeBuilding" : ageofshimrod.C.BUILDING_TOWER,
+        "size" : {"x" : 64, "y" : 92},
+        "tileset" : "assets/tileset/tower.png",
+        "sprite" : { "x" : 0, "y" : 0},
+        "capacity" : 1,
+        "materiaux" : [
+            {
+                "id" : ageofshimrod.C.RESSOURCE_BOIS,
+                "quantity" : 100
+            },
+            {
+                "id" : ageofshimrod.C.RESSOURCE_PIERRE,
+                "quantity" : 100
+            }
+        ],
+    }
 ]

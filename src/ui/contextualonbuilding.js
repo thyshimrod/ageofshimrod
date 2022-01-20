@@ -55,8 +55,10 @@ ageofshimrod.ContextualOnBuilding.prototype ={
                             let peonOnThisBuilding = this.getPeonOnThatBuilding();
                             if (peonOnThisBuilding.length < this.building.capacity){
                                 let peonsFree = ageofshimrod.map.findPeonFree();
-                                peonsFree[0].changeAffectation(this.building);
-                                this.building.peons.push(peonsFree[0]);
+                                if (peonsFree.length > 0){
+                                    peonsFree[0].changeAffectation(this.building);
+                                    this.building.peons.push(peonsFree[0]);
+                                }
                             }
                         }else{
                             let peonsInBuilding = this.getPeonOnThatBuilding();
