@@ -44,35 +44,36 @@ ageofshimrod.ContextualOnBuilding.prototype ={
     },
 
     clickEvent : function(evt){
-        //TODO Evaluate if click on window or outside
         if (this.status === ageofshimrod.C.UI_STATUS_SHOW){
-            let btnPressed = false;
-            for (let i = 0;i < this.buttons.length;i++){
-                if (evt.pageX > (this.buttons[i].x + this.x - this.buttons[i].size/2) && evt.pageX  < (this.buttons[i].x + this.x + this.buttons[i].size)
-                &&  evt.pageY > (this.buttons[i].y + this.y - this.buttons[i].size/2) && evt.pageY < (this.buttons[i].y + this.y + this.buttons[i].size)){
-                    if (this.buttons[i].status === ageofshimrod.C.BUTTON_STATUS_OK){
-                        if (this.buttons[i].name === "+"){
-                            let peonOnThisBuilding = this.getPeonOnThatBuilding();
-                            if (peonOnThisBuilding.length < this.building.capacity){
-                                let peonsFree = ageofshimrod.map.findPeonFree();
-                                if (peonsFree.length > 0){
-                                    peonsFree[0].changeAffectation(this.building);
-                                    this.building.peons.push(peonsFree[0]);
+            if (evt.pageX > this.x && evt.pageX < (this.x + this.width)
+            &&  evt.pageY > this.y && evt.pageY < (this.y + this.height)){
+                for (let i = 0;i < this.buttons.length;i++){
+                    if (evt.pageX > (this.buttons[i].x + this.x - this.buttons[i].size/2) && evt.pageX  < (this.buttons[i].x + this.x + this.buttons[i].size)
+                    &&  evt.pageY > (this.buttons[i].y + this.y - this.buttons[i].size/2) && evt.pageY < (this.buttons[i].y + this.y + this.buttons[i].size)){
+                        if (this.buttons[i].status === ageofshimrod.C.BUTTON_STATUS_OK){
+                            if (this.buttons[i].name === "+"){
+                                let peonOnThisBuilding = this.getPeonOnThatBuilding();
+                                if (peonOnThisBuilding.length < this.building.capacity){
+                                    let peonsFree = ageofshimrod.map.findPeonFree();
+                                    if (peonsFree.length > 0){
+                                        peonsFree[0].changeAffectation(this.building);
+                                        this.building.peons.push(peonsFree[0]);
+                                    }
                                 }
-                            }
-                        }else{
-                            let peonsInBuilding = this.getPeonOnThatBuilding();
-                            if (peonsInBuilding.length > 0){
-                                this.building.removePeon(peonsInBuilding[0]);
-                                peonsInBuilding[0].changeAffectation(undefined);
+                            }else{
+                                let peonsInBuilding = this.getPeonOnThatBuilding();
+                                if (peonsInBuilding.length > 0){
+                                    this.building.removePeon(peonsInBuilding[0]);
+                                    peonsInBuilding[0].changeAffectation(undefined);
+                                }
                             }
                         }
                     }
-                    btnPressed = true;
                 }
+                return ageofshimrod.C.CLICK_ON_WINDOW;
             }
-            if (!btnPressed) this.toggle();
-            return ageofshimrod.C.CLICK_ON_WINDOW;
+            this.toggle();
+            return ageofshimrod.C.CLICK_OUTSIDE_WINDOW;
         }
         return ageofshimrod.C.CLICK_OUTSIDE_WINDOW;
     },
